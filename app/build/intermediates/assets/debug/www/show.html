@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="utf-8">
+		<title>直播</title>
+	
+          	<script type="text/javascript">
+	    var  pagename='show';
+        
+	    </script>
+       <script language="JavaScript" src="js/json2.js"></script>
+		<link href="css/common.css" rel="stylesheet" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+		<style>
+						* {
+				padding: 0;
+				margin: 0;
+				font-size: 14px;
+			}
+			body {
+				width: 100%;
+				background: #0077DD;
+			}
+			a,
+			input,  
+			button {
+				outline: none;
+				border: none;
+			}
+			#tabs {
+				margin: 0;
+				padding: 0;
+				font-family:"微软雅黑";
+			}
+			#tabs-1 {
+				padding: 0;
+				padding: 0;
+				overflow-y: auto;
+				z-index: 200;
+			}
+			#tabs-2 {
+				font-family:"微软雅黑";
+				overflow-y: auto;
+				padding:10px 10px;
+				
+			}
+			.liantianinput {
+				z-index: 201;
+				width: 100%;
+				height: 51px;
+				background-color: #FFFFFF;
+				border-top:1px solid #c6c6c6;
+				position: fixed;
+				bottom: 0;
+				box-shadow:1px -1px 2px #d4d4d4;
+				
+			}
+			.liantianinput a{ float:left; color:#333; }
+			.liantianinput input {
+				width: 61%;
+				height: 30px;
+				/*line-height:30px;*/ 
+				font-size:12px;
+				border:1px solid #eee;
+				background: #FFFFFF;
+				margin-left: 15px;
+				margin-right:10px;
+				margin-top: 10px;
+				float: left;
+				border-radius:15px;
+			}
+			.liantianinput img {
+				margin-top: 10px;
+				width: 25px;
+				
+			}
+			.liaotian {
+				background-color: #F1F1F1; 
+			} .list-group-item {
+				background: none;
+			}
+			.giftlist {
+				position: absolute;
+				background: #ffca8d;
+				height: 300px;
+				overflow: auto;
+			}
+
+			#biaoqing
+			{
+				position: absolute;
+				background: #ffca8d;
+				width: 100%;
+				height: 300px;
+				overflow: auto;
+				z-index: 100;
+				display: none;
+			}
+
+			#biaoqing img 
+			{
+				padding-left:25px;
+				padding-top:25px;
+				border: #fff;
+			}
+			#giftnum {
+				width: 70px;
+				height: 35px;
+				float: left;
+				opacity: 0.9;
+				color: #000;
+			}
+			.giftgroup {
+				background: #fc8700;
+				width: 100%;
+				height: 50%;
+				position: fixed;
+				opacity: 9.9;
+				font-size: 10px;
+				bottom: 0;
+				left: 0;
+				display: none;
+			}
+			#bv {
+				background: #000;
+			}
+			.xinxi {
+  				width: 140px;
+  				position: absolute;
+  				background:rgba(0,0,0,0.4);
+  				height: 50px;
+  				bottom: 50px;
+				padding-left:10px;
+				left:20px;
+				padding-top:5px;			}
+			
+			.tip_roomid {
+				position: absolute;
+				top: 20px;
+				color: #FFF;
+			}
+			.tip_onlinenum {
+				background: url(images/icon_mine.png) no-repeat;
+				background-size: 16px;
+				margin-left: 10px;
+				display: block;
+				position: absolute;
+				top: 55px;
+				color: #FFF;
+				padding-left: 30px;
+			}
+			.tip_img {
+				
+				background-size: 16px;
+				
+				display: block;
+				position: absolute;
+				top: 20px;
+				color: #FFF;
+				
+			} 
+			
+			.guanzhu {
+				background: #381F58;
+				border-radius: 50% 50% 50% 50%;
+				float: right;
+				width: 14%;
+				height: 50px;
+				right: 0;
+				bottom: 85%;
+				position: absolute;
+			}
+			.breadcrumb li {
+				background: url(images/bg_gift.png) no-repeat center center;
+				background-size: 60px;
+				display: block;  
+				width: 70px;   
+				height: 60px;
+				margin: 8px 5px;
+				margin-bottom: 40px;   
+				padding-top: 10px;
+				text-align:center;
+			}
+			.breadcrumb li img {} .giftname {
+				font-size: 10px;
+				text-overflow: ellipsis;
+			}
+			.needcoin {
+				font-size: 9px;
+				padding-left: 3px;
+				color: #ff8900;
+			}
+			
+			.c_black {
+				opacity: 0.7;
+				position: fixed;  
+				right: 0;
+				top: 52%;
+			}
+			/*选择礼物数量**/
+			
+			.selectgift_left {
+				float: left;
+				height: 100%;
+				width: 72%;
+				/*background: #000000;*/
+			}
+			.selectgift_right {
+				float: right;
+  width: 21%;
+  height: 100%;
+  margin-right: 7%;
+			}
+			/*各个数量小div**/
+			
+			.select_gift_num {
+				/*background: #0166FF;*/
+				
+				float: left;
+				width: 70px;
+				height: 70px;
+				float: left;
+				margin: 8px;
+				/*border: dotted;*/
+			}
+			#s_gifname {
+				overflow: hidden;
+				font-size: 17px;
+				color: #ffe2c0;
+				width: 50px;
+				text-overflow: ellipsis;
+				/*word-wrap: break-word;*/
+			} 
+			.hr{
+				width: 100%;
+				
+				margin-top: 0px;
+			    border:1px  solid #DEDEDE;
+			   
+			}
+			
+			.rank_div{
+				width: 70%;
+				float: right; 
+				height: 20px;
+				margin-top: 10px;"
+			}
+			
+			#selectnumber
+			{
+				background: #F0FFF0; 
+				width: 95px;   
+				height: 210px;  
+				position:absolute; 
+				bottom:20%;
+				right: 30%;
+				color:#B37AA6;
+				text-align: center;
+				 
+				
+			}
+			#selectnumber hr
+			{
+				margin-bottom: 0px;
+				margin-top: 0px;
+				width: 80%; 
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			#selectnumber div
+			{
+				height: 40px;
+				padding-top: 10px;
+			}
+			.ui-state-hover{ background:#eee;}
+
+			
+			
+			
+			
+		</style>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="js/jquery.1.11.min.js"></script>
+		<script type="text/javascript" src="js/cookie.js"></script>
+		<script type="text/javascript">
+			var pagename = 'order';
+		</script>
+		<script src="js/json2.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/socket.io.js"></script>
+		<script src="js/wapchat.js"></script>
+		<script src="js/chatRoom.js"></script>
+		<script src="jquer_ui/jquery-ui.min.js"></script>
+		
+		<script language="JavaScript">
+		    
+		   
+			//获取rtmp服务器
+			$.ajax({  
+				type:"get",
+				url:purl+"/index.php/Api/update_server_info/act/fms",
+				dataType:"jsonp",
+				async:true,
+				success:function(data){
+					var data=eval(data);
+					
+					localStorage.setItem("cdn",data['fmsstream']);
+					
+					
+				}
+			});
+		</script>
+		<link type="text/css" href="jquer_ui/jquery-ui.min.css" rel="stylesheet" />
+		<link type="text/css" href="css/bsbtn.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+		
+			var s_prive = 0;
+			var roomid = GetQueryString("roomid");
+			var cdn=localStorage.getItem("cdn") ;
+			if(cdn==""||cdn==null){
+			//alert("无法连接服务器");
+			//location.href="index.html";
+		  
+			 }	
+			 
+			var video='	<video  controls="controls" id="bv" autoplay="autoplay" width="100%"  poster="images\videobg.jpg"> 	<source id="video1" src="'+cdn+'stream'+roomid+'.m3u8">	</video>';
+	        $(document).ready(function() {
+				$(".tip_roomid").html("房号：" + roomid);
+				//$(".tip_onlinenum").html(online_num); 
+			})
+
+			function initroomid(show) {			
+				init_roomid(show.emceeId, roomid, show.emceeNick,show.username);
+			}
+			var _show = {
+				"isHD": 0,
+				"vip": "",
+				"enterChat": 0,
+				"emceeId": "",
+				"fps": "",
+				"cdnl": "",
+				"cdn": "",
+				"zddk": "",
+				"pz": "",
+				"zjg": "",
+				"height": "",
+				"width": "",
+				"emceeLevel": "",
+				"goodNum": "",
+				"emceeNick": "",
+				"oldseatnum": "0",
+				"songPrice": "1500",
+				"offline": 0,
+				"roomId": "",
+				"titlesUrl": "",
+				"titlesLength": "4",
+				"bgimg": ""
+			};
+			$.getJSON(purl + '/index.php/Appapi/getshowinfo?ajax=showinfo&callback=?', function(json) {
+				var roomId = localStorage.getItem('roomid');
+				_show = {
+					"isHD": 0,
+					"vip": json.vip,
+					"enterChat": 0,
+					"emceeId": json.id,
+					"fps": json.fps,
+					"cdnl": json.cdn1,
+					"cdn": json.cdn,
+					"zddk": json.zddk,
+					"pz": json.pz,
+					"zjg": json.zjg,
+					"height": json.height,
+					"width": json.widht,
+					"emceeLevel": 1,
+					"username": json.username,
+					"goodNum": json.curroomnum,
+					"emceeNick": json.nickname,
+					"oldseatnum": "0",
+					"songPrice": "1500",      
+					"offline": 0,
+					"roomId": roomid,
+					"titlesUrl": "",
+					"titlesLength": "4",
+					"bgimg": json.bgmig,
+					"password": json.password
+				};
+				initroomid(_show);
+			});
+			 //改变聊天模式
+			function zhuangtai() {
+					var msgtype = $("#msgtype").val();
+					if (msgtype != 0) {
+						Chat.is_private = 1;
+						s_prive = 1;
+					} else {
+						s_prive = 0;
+					}
+				}
+				//选项卡
+			$(function() {
+				$("#tabs").tabs({select:2});   
+				
+			});
+			$(function() {
+				if(sessionStorage.tabsid!=undefined){
+        	
+        		 $( "#tabs" ).tabs({ active: sessionStorage.tabsid}); 
+        		
+        	    } 
+        	    
+        	    $("#gifttabs").tabs();
+
+			});
+			var ishidden = 1;
+			 //礼物隐藏显示
+			function viewGiftList() {
+				$(".giftlist").toggle();
+				if (ishidden == 1) {
+					$("#tabs").hide();
+					ishidden = 0;
+				} else {
+					$("#tabs").show();
+					ishidden = 1;
+				}
+				$('#giftgroup').hide();
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		
+		<div style="font-size:0px; position:fixed;">
+			<script type='text/javascript'>document.write(video);</script>
+	
+			
+			<div> 
+				
+				<span id="roomid_sp" class="tip_roomid">房号：正在获取</span>
+				<span id="per_sp" class="tip_onlinenum">10</span>  
+				
+				<span id="back_sp"  class="tip_img" style="display: none;" </span> 
+
+			</div>
+			
+		</div> 
+		<div  id="bv2">
+			
+		</div>
+		<div id="biaoqing">
+		<img src="images/face/OK.gif" />
+
+<img src="images/face/baiyan.gif" />
+
+<img src="images/face/bb.gif" />
+
+<img src="images/face/caidao.gif" />
+
+<img src="images/face/chengrang.gif" />
+
+<img src="images/face/chouren.gif" /><br />
+
+<img src="images/face/daku.gif" />
+
+<img src="images/face/daxiao.gif" />
+
+<img src="images/face/danding.gif" />
+
+<img src="images/face/ding.gif" />
+
+<img src="images/face/feiwen.gif" />
+
+<img src="images/face/ganka.gif" /><br />
+
+<img src="images/face/geili.gif" />
+
+<img src="images/face/gouyin.gif" />
+
+<img src="images/face/guzhang.gif" />
+
+<img src="images/face/guiba.gif" />
+
+<img src="images/face/hainiu.gif" />
+
+<img src="images/face/houhou.gif" /><br />
+
+<img src="images/face/huaixiao.gif" />
+
+<img src="images/face/huoda.gif" />
+
+<img src="images/face/jianxiao.gif" />
+
+<img src="images/face/jingya.gif" />
+
+<img src="images/face/kaixin.gif" />
+
+<img src="images/face/kelian.gif" /><br />
+
+<img src="images/face/kuangxiao.gif" />
+
+<img src="images/face/liangzai.gif" />
+
+<img src="images/face/meinv.gif" />
+
+<img src="images/face/meiyan.gif" />
+
+<img src="images/face/outu.gif" />
+<img src="images/face/piaoguo.gif" /><br />
+
+<img src="images/face/qinqin.gif" />
+
+<img src="images/face/sese.gif" />
+
+<img src="images/face/shangbuqi.gif" />
+
+<img src="images/face/byebye.gif" />
+
+<img src="images/face/tiaoxi.gif" />
+
+<img src="images/face/touxiao.gif" /><br />
+
+<img src="images/face/tuxue.gif" />
+
+<img src="images/face/wabi.gif" />
+
+<img src="images/face/weiguan.gif" />
+
+<img src="images/face/weiqu.gif" />
+
+<img src="images/face/wuyu.gif"  />
+
+<img src="images/face/yali.gif" /><br />
+
+<img src="images/face/ye.gif"  />
+
+<img src="images/face/zeml.gif"  />
+
+<img src="images/face/zhuaguang.gif" />
+			
+		</div>
+		<div class="giftlist" style="display: none;" id="gifttabs">
+			
+			
+			<ul>
+				<li><a href="#putong">普通</a></li>
+				<li><a href="#gaoji">高级</a></li>
+				<li><a href="#haohua">豪华</a></li>
+				<li><a href="#changjing">场景</a></li>
+			</ul>
+			<div id="putong">
+				<ol class="breadcrumb" id="gift_ul1" style="list-style: none;">
+
+				</ol>
+			</div>
+			<div id="gaoji">
+				<ol class="breadcrumb" id="gift_ul2" style="list-style: none;">
+
+				</ol>
+			</div>
+			<div id="haohua">
+				<ol class="breadcrumb" id="gift_ul3" style="list-style: none;">
+
+				</ol>
+			</div>
+			<div id="changjing">
+				<ol class="breadcrumb" id="gift_ul6" style="list-style: none;">
+
+				</ol>
+			</div>
+			<br />
+			
+			<div class="giftgroup" id="giftgroup"/>
+			
+			
+			
+			
+			
+			<div style="width: 100%;height:35px;background:url(images/live_gift_return.png) no-repeat;background-size: 12px;margin-top: 10px;margin-left: 25px;" onclick="sen_gifts_black()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额:<img width="15px" src="img/carpic/mine_money.png"></div>
+	
+			<div class="selectgift_left">
+				<img class="select_gift_num live_gift_number_9999" onclick="changebg('.live_gift_number_9999')" src="images/giftpic/live_gift_number_9999_default.png" />
+				<img class="select_gift_num live_gift_number_3344" onclick="changebg('.live_gift_number_3344')" src="images/giftpic/live_gift_number_3344_default.png" />
+				<img class="select_gift_num live_gift_number_1314" onclick="changebg('.live_gift_number_1314')" src="images/giftpic/live_gift_number_1314_default.png" />
+				<img class="select_gift_num live_gift_number_520" onclick="changebg('.live_gift_number_520')" src="images/giftpic/live_gift_number_520_default.png" />
+				<img class="select_gift_num live_gift_number_365" onclick="changebg('.live_gift_number_365')" src="images/giftpic/live_gift_number_365_default.png" />
+				<img class="select_gift_num live_gift_number_100" onclick="changebg('.live_gift_number_100')" src="images/giftpic/live_gift_number_100_default.png" />
+				<img class="select_gift_num live_gift_number_99" onclick="changebg('.live_gift_number_99')" src="images/giftpic/live_gift_number_99_default.png" />
+				<img class="select_gift_num live_gift_number_50" onclick="changebg('.live_gift_number_50')" src="images/giftpic/live_gift_number_50_default.png" />
+
+			</div>
+		
+			<div class="selectgift_right">
+				<center><div class="" id="s_giftpic"></div></center>
+				<center>
+					<nobr id="s_gifname"></nobr>
+				</center>
+
+				<center><img src="images/giftpic/live_gift_number_send_x.png" /> </center>
+			<center>	<input type="text" style="border:none;border-bottom-color:#E6D9E2 ;border-bottom-width: 1px;border-bottom-style: solid ;background-color: transparent;float: left;" id="giftnum" readonly onclick="$('#selectnumber').toggle()" /></center>             
+		  		  
+				<span style="float: left;color:#E6D9E2;">个</span>
+<br style="clear: both;"> 
+				<button style="background: #643e11; margin-left:10px; color:#fff; height: 55px;width: 60px;" onclick="GiftCtrl.sendGift()"> 赠送</button>
+			</div>
+			<!--<input class="form-control" id="giftnum" name="giftnum" type="number" placeholder="数量" />-->
+			<input id="gift_id" name="gift_id" type="hidden" />
+			<!--					<div class="mui-content-padded">
+						<span class="mui-icon mui-icon-arrowthinup" onclick="giftnum('1')"></span>
+						<span class="mui-icon mui-icon-arrowthindown" onclick="giftnum('-1')"></span>
+					</div>
+-->
+			<!--	<button class="btn btn-default" onclick="giftnum('-1')">-</button>
+					<button class="btn btn-default" onclick="giftnum('1')">+</button>-->
+			<!--					<br style="clear: both;">
+					<span class="mui-icon mui-icon-paperplane" onclick="GiftCtrl.sendGift()"></span>
+					<span class="mui-icon mui-icon-closeempty"  onclick="viewGiftList()"></span>-->
+
+			<!--<button class="btn btn-default" onclick="GiftCtrl.sendGift()">送礼物</button>
+					<button class="btn btn-default" onclick="viewGiftList()">取消</button>-->
+		
+			<div id="selectnumber" style="display: none;overflow-x: scroll;">
+			<div class="snum_c">1
+			</div>
+			<hr />
+			<div class="snum_c">2</div>
+			<hr />
+			<div class="snum_c">3</div>
+			<hr />
+			<div class="snum_c">4</div>
+			<hr />
+			<div class="snum_c">5</div>
+			<hr />
+			<div class="snum_c">6</div>
+			<hr />
+			
+			<div class="snum_c">7</div>
+			<hr />
+			<div class="snum_c">8</div>
+			<hr />
+			<div class="snum_c">9</div>
+			<hr />
+			<div class="snum_c">10</div>
+			<hr />
+			<hr />
+			<div class="snum_c">88</div>
+			<hr />
+			
+			<div class="snum_c">66</div>
+			<hr />
+			<div class="snum_c">33</div>
+			<hr />
+			<div class="snum_c">18</div>
+			<hr />
+			<div class="snum_c">10</div>
+			<hr />
+			 
+			</div>
+			
+			</div>
+		<img src="images/live_video_back_default.png"  class="c_black"  style="width: 40px;" onclick="viewGiftList()" />
+		<!--<span class="mui-icon mui-icon-undo c_black" onclick="viewGiftList()"></span>-->
+		</div>
+		<style>
+			#guanzhuli {
+			    list-style: none;
+			    float: left;
+			    position: relative;
+			    top: 0;
+			   
+			    white-space: nowrap;
+			    border: none;
+			    color: #000;
+			    line-height: 40px;
+			    height: 40px;
+			    padding: 0px;
+			}	
+			#guanzhuli a {
+				    color: #000;
+				    font-weight: bold;
+				    font-size: 16px;
+				    padding: 0px 18px;
+				    padding-bottom: 2px;
+				    outline: none;
+				}	
+
+			</style>
+		<div id="tabs">
+			<ul style="height:40px; line-height:40px;">
+				<li onclick="selecttabs(1)" id="tabs_li1"><a  href="#tabs-1" onclick="tabs(0)">公屏</a></li>
+				<li onclick="selecttabs(2)" id="tabs_li2"><a  href="#tabs-2" onclick="tabs(1)">观众</a></li>
+				<li onclick="selecttabs(3)" id="tabs_li3"><a  href="#tabs-3" onclick="tabs(2)">贡献</a></li>
+				<li onclick="selecttabs(4)" id="tabs_li4"><a  href="#tabs-4" id="showmore" onclick="tabs(4)">更多</a></li>
+				<div id="guanzhuli" style="text-align:center;background-color: #ff8901; height:39px; font-weight: bold; font-size: 20px; float:right; color:#fff; text-align:center;"><a class="aa"  href="#" id="guanzhuimg" style="color:#fff;">关注</a></div>
+				
+			</ul>
+       
+			<div id="tabs-1">
+				<!--
+				<SELECT name="msgtype" id="msgtype" onchange="zhuangtai()">
+					<OPTION value="0">公聊</OPTION>
+					<OPTION value="2">私聊</OPTION>
+				</SELECT>-->
+
+				<div class="liaotian" id="chat_hall"></div>
+				<!--<div class="qiaoqiaohua panel-default" id='qiaoqiaohua' style="margin-top: 20px;"></div>-->
+
+				<!--				<p>对：
+					<select name="to_nickname" id="to_nickname">
+						<OPTION value="0">所有人</OPTION>
+					</select> 
+				</p>-->
+				<input type="hidden" value="0" />
+				<div class="liantianinput" ><a href="index.html" style="margin:3px 25px 0px 25px;"><img src="img/carpic/goback.png" style="width:12px; height:23px;" /></a><a href="#"><img src="images/bq.png" onclick="biaoqing()" /></a>
+					<input class="form-control" placeholder="和主播尽情的聊天吧" class="btn btn-default dropdown-toggle" type="text" class="in_tx" id="msg" onKeyDown="Chat.submitForm(event);" name="msg" />
+					<!--<img src="images/live_sendmessage_image_default.png" onClick="Chat.doSendMessage();" />-->
+					<img src="images/live_send_gift.png" onclick="viewGiftList()" />
+				</div>
+			</div>
+			<div id="tabs-2" style="background-color:#F1F1F1 ;">
+				
+					<div style="color: #7B7B7B;"><font size="2" face="黑体"><b>观众</b></font></div>
+	
+				<div id="guanzhong_div" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden;">
+				<ul id="guanzhong_ul" style="list-style: none;">
+
+				</ul>
+				</div>
+				
+			</div>
+			<div id="tabs-3" style="background-color:#F1F1F1;">
+				<div style=" width: 60%; border:none; margin:0px auto 20px; height: 20px;" id="segmentedControl" class="mui-segmented-control">
+					<button style="color: #000000; border-right:none ; text-decoration: none; width: 50%; float: left; font-family:'微软雅黑';" id="rankw" class="mui-button-row   mui-active" href="#item1mobile">本场排行</button>
+					<button style="color: #000000; border-left:none ; text-decoration: none; width: 50%; float: right; font-family:'微软雅黑';" id="rankm" class="mui-button-row " href="#item2mobile">本月排行 </button>
+
+				</div>
+				<div id="ran_div_w" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden; border-top:1px solid #d7d7d7;">
+					<ul id="ran_ul_w">
+						<li><img width="40px" src="img/carpic/testimage.png" />
+							<div class="rank_div" style="color: #000000;" >...星月<img style="float: right;" width="35px" src="img/leve/wealth10.png" />
+								
+							</div>
+						</li>
+
+						
+					</ul>
+					
+				</div>
+				<div id="ran_div_m" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden; display: none; border-top:1px solid #d7d7d7;">
+					<ul id="ran_ul_m">
+					
+
+					</ul>
+					
+				</div>
+		  </div>
+		 <!---
+		 <div id="tabs-7" style="background-color:#F1F1F1 ; height:400px; padding:10px 10px;">
+				
+					<div style="color: #7B7B7B;"><font size="2" face="黑体"><b>房间资料</b></font></div>
+	
+				
+				
+			</div>
+			
+			--> 
+			
+			<div id="tabs-4" style="background-color:#F1F1F1 ;">
+				  <div class="tx">
+				  	
+				  </div>
+				  <ul>
+				  	<li style="color: #fff;">
+				  		<div>
+				  			<a href="recharge.html"><img src="images/icon_more_charge.png" ></a>
+				  		</div>	
+				  		
+				  		  充值
+				  	</li>
+				  	<li style="color: #fff;">
+				  		<div>
+				  			<a href="share.html"><img src="images/icon_more_share.png" ></a>
+				  		</div>	
+				  		
+				  		  分享
+				  	</li>
+				  	<li style="color: #fff;">
+				  		<div>
+				  			<a href="report.html"><img src="images/icon_more_report.png" ></a>
+				  		</div>	
+				  		
+				  		  举报
+				  	</li>
+				  		<li style="color: #fff;">
+				  		<div>
+				  			<a href="toolItem.html"><img src="images/icon_more_mall.png" ></a>
+				  		</div>	
+				  		
+				  		 商城
+				  	</li>
+		  	
+				  </ul>
+<style>
+#tabs-4{
+	
+	overflow-y: auto;
+}
+   #tabs-4 .tx{
+   	   min-height: 90px;
+	   line-height:20px;
+   }
+    #tabs-4 .tx .tx-left{
+    	float:left;
+    	width: 25%;
+    	text-align: center;
+        color:#eee;
+        line-height: 30px;
+        font-size: 12px;    	
+    }
+    #tabs-4 .tx .tx-left img{
+    	border:none;
+    	width: 60px;
+    	height: 60px;
+    	border-radius: 50%;
+    	float: none;
+    } 
+    
+     #tabs-4 .tx .tx-right{
+     	float:left;
+     	width: 60%;
+     	margin-left: 10%;
+     }
+     #tabs-4 .tx .tx-right .tx-title{
+          font-size: 16px;
+          color: #fff;
+          font-weight: bold;
+          
+     }  
+     #tabs-4 .tx .tx-right .tx-memo{
+           color:#DDDDDD;
+           font-size: 10px;
+          
+     }
+      #tabs-4 .tx .tx-right .tx-memo .wz{
+           float: right;
+           background: url(images/location.png) no-repeat left center; 
+           padding: 0 0 0 15px;
+           font-size: 10px;
+           
+     }       
+     #tabs-4 .tx .tx-right .tx-body{
+           color:#fff;
+           font-size: 10px;
+           height: 20px;
+     }
+       #tabs-4 .tx .tx-right .tx-body .wz{
+           float: right;
+     }    
+     #tabs-4 .tx .tx-right .tx-tiao{
+             height: 2px;
+              background: url(images/abc_list_selector_disabled_holo_light.9.png) ;
+            
+     } 
+     #tabs-4 .tx .tx-right .tx-tiao .tx-tiao-b{
+             height: 2px;
+             background: #fff;
+            
+     }     
+     #tabs-4 ul{
+     	clear: both;
+     	
+     }  
+     #tabs-4 ul li{
+		 background:#ff8900;
+		     padding: 20px 0px 10px 0px;
+     	list-style: none;
+     	width: 25%;
+     	text-align: center;
+     	float: left;
+     	margin-top: 10px;
+     	line-height: 30px;
+     	
+     	
+     }
+      #tabs-4 ul li div{
+      	 width: 60px;
+      	 height: 60px;
+      	 border-radius: 50%;
+      	 background: #E0E0E0;
+      	 line-height: 30px;
+      	 margin: 0 auto;
+		 background:#ffd09a;
+      }
+       #tabs-4 ul li div img{
+       	  border:none;
+       	  border-radius: 50%;
+       	  width: 60px; 
+       	  height: 60px;
+       	  float: none;
+       	
+       }
+</style>	<input type="hidden" id="ifnew" value="0">
+			
+		  
+		</div>
+
+	</body>
+
+</html>
+
+<script language="JavaScript">
+	var width = $(document).width();
+	var width1= width*3/4;
+	var height = $(document).height();
+	var heightSurplus = height - width1;
+ 
+	$("#bv").attr("height", width1);
+
+	$("#bv2").css("height",width1);
+	$("body").attr("height", height);
+	$("#bv").attr("width", width);
+
+	$("#chat_hall").css("min-height", heightSurplus);
+	$("#tabs").css("height", heightSurplus-6);
+	
+	$("#gifttabs").css("height", heightSurplus-6);
+	
+	$("#userlist").attr("height", heightSurplus);
+	$("#tabs-1").css("height", heightSurplus-80);
+	$("#tabs-2").css("height", heightSurplus);
+	$("#tabs-3").css("height", heightSurplus);
+	$("#tabs-4").css("height",heightSurplus-40);  
+	//获取礼物信息列表     
+	//localStorage.clear(); 
+	//var data=localStorage.getItem('giflist');
+	if(isupdate)localStorage.removeItem('giflist');
+
+	if(localStorage.getItem('giflist')!=undefined){
+		data=localStorage.getItem('giflist');
+		data=eval("("+data+")");
+		
+		for (var i = 0; i < data.length; i++) {
+			 
+				switch (data[i]['sid']) {
+					case "1":
+						$("#gift_ul1").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "2":
+						$("#gift_ul2").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "3":
+						$("#gift_ul3").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;'  class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "6":
+						$("#gift_ul6").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+				}
+			}
+		
+	}else{
+		$.ajax({
+			url: purl + '/index.php/Api/getgiflist',
+			dataType: 'jsonp', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型 
+			success: function(data) {
+			
+	         localStorage.setItem('giflist',JSON.stringify(data));
+			
+				//获得服务器响应 
+				for (var i = 0; i < data.length; i++) {
+					//data1+='{"id":"'data[i]['sid']+'"sid":'+'"'+data[i]['id']+'","giftname":"'+data[i]['giftname']+'","needcoin":'+data[i]['needcoin']+'","gifStyle":'+data[i]['giftStyle']+'","giftType:"'+data[i]['giftType']+',"giftIcon_25:"'+data[i]['giftIcon_25']+',"giftIcon:"'+data[i]['giftIcon']+',"gifSwf:"'+data[i]['gifSwf']+'"},';;
+					
+					switch (data[i]['sid']) {
+						case "1":
+						   
+							$("#gift_ul1").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+							break;
+						case "2":
+							$("#gift_ul2").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+							break;
+						case "3":
+							$("#gift_ul3").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;'  class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+							break;
+						case "6":
+							$("#gift_ul6").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+							break;
+					}
+				}
+				
+			 }
+		 });
+		
+		
+	}
+	
+	//礼物被选中
+	var _select_gift = {
+		giftname: "",
+		giftpic: "",
+	};
+
+	function giftli(id) {
+		var g_id = "g_" + id;
+		$(".giftlist ol li").css("background", "url(images/bg_gift.png) center no-repeat");
+		$(".giftlist ol li").css("background-size", "60px");
+		$("#" + g_id).css("background", "url(images/bg_gift_selected.png) center no-repeat");
+		$("#" + g_id).css("background-size", "60px");
+		//alert(str);
+		//$("#giftnum").val(Number($("#giftnum").val()) + 1);
+		GiftCtrl.gift_id = id;
+		//GiftCtrl.gift_to_id + "&count=" + giftNum
+		GiftCtrl.gift_to_id = $("#to_nickname").find("option:selected");
+		GiftCtrl.count = $("#giftnum").val();
+		var giftpic = $("#" + g_id).find("img");
+		var giftname = $("#" + g_id).find("div").text();
+		_select_gift.giftpic = giftpic.attr("src");
+		_select_gift.giftname = giftname;
+		$("#s_giftpic").html("<img src='" + _select_gift.giftpic + "' style='margin-right:6px'/>");
+		$("#s_gifname").html(giftname);
+		$("#giftgroup").show();
+	}
+
+	function giftnum(ctrl) {
+			if (ctrl == "1") {
+				$("#giftnum").val(Number($("#giftnum").val()) + 1);
+			} else {
+				$("#giftnum").val(Number($("#giftnum").val()) - 1);
+			}
+		}
+		//踢人
+
+	function Kick(id) {
+			$.ajax({
+				url: purl + '/index.php/Api/getusers?uid=' + id,
+				dataType: 'jsonp', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				success: function(json) {
+					UserListCtrl.user_id = json['id'];
+					UserListCtrl.nickname = json['username'];
+					UserListCtrl.level = json['leve'];
+					UserListCtrl.goodnum = json['goodnum']['num'];
+					ChatApp.Kick();
+				}
+			});
+		}
+		//禁言按钮触发方法 
+
+	function shutup(id) {
+		$.ajax({
+			url: purl + '/index.php/Api/getusers?uid=' + id,
+			dataType: 'jsonp', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			success: function(json) {
+				UserListCtrl.user_id = json['id'];
+				UserListCtrl.nickname = json['username'];
+				UserListCtrl.level = json['leve'];
+				UserListCtrl.goodnum = json['goodnum']['num'];
+				ChatApp.ShutUp();
+			}
+		});
+	}
+
+	function huifu(id) {
+			$.ajax({
+				url: purl + '/index.php/Api/getusers?uid=' + id,
+				dataType: 'jsonp', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				success: function(json) {
+					UserListCtrl.user_id = json['id'];
+					UserListCtrl.nickname = json['username'];
+					UserListCtrl.level = json['leve'];
+					UserListCtrl.goodnum = json['goodnum']['num'];
+					ChatApp.Resume();
+				}
+			});
+		}
+	//初始化获取关注状态
+	var getrid = purl + "/index.php/Api/getrid?callback=?&roomid=" + roomid;
+	$.getJSON(getrid, function(data) {
+		    localStorage.setItem('rid',data.rid);
+		   
+			$.getJSON(purl + '/index.php/Appapi/Attention?attuid=' + data.rid + '&callback=?', function(data) {
+				
+				//alert(data.code);   
+				if (data.code == "0") {
+					
+					//$("#guanzhuimg").attr("src", "images/live_middle_nav_follow_heart_unfollow.png");
+					$("#guanzhuimg").attr("state", "0");
+					//$("#guanzhuimg").css("width","40px"); 
+					//$("#guanzhuimg").css("padding-left","9px");
+					//$("#guanzhuimg").css("padding-top","9px");
+					$("#guanzhuimg").text("关注");
+				} else if (data.code == "1") {
+					
+					//$("#guanzhuimg").attr("src", "images/live_middle_nav_follow_heart_followed.png");
+					$("#guanzhuimg").text("取消");
+					$("#guanzhuimg").attr("state", "1");
+				}
+			});
+		});
+		//主播id
+	var rid=localStorage.getItem('rid');
+		//关注 、取消关注
+		
+	$("#guanzhuimg").click(function() {
+		
+	
+			
+			var state = $("#guanzhuimg").attr("state");
+			if (state == "0") {
+				
+				$.getJSON(purl + '/index.php/Appapi/interest?uid=' + rid + '&callback=?', function(data) {
+				
+					if (data.code == "0") {
+						$("#guanzhuimg").text("取消");
+						alert("已关注")
+					}
+				});
+			} else if (state == "1") {
+				
+				$.getJSON(purl + '/index.php/Appapi/cancelInterest?uid=' + rid + '&callback=?', function(data) {
+					if (data.code == "0") {
+						$("#guanzhuimg").text("关注");
+						alert("已取消关注");
+					}
+			});
+			}
+		//});
+	})
+
+   // $("#showmore").click(function(){
+  
+    	// if($("#ifnew").val()=='0'){
+    	 	
+		 	 //主播信息2 
+		 	 if(sessionStorage.userinfo!=undefined){
+		 	 	$("#tabs-4 .tx").append(sessionStorage.userinfo);
+		 	 }else{
+			var getrid = purl + "/index.php/Api/getrid2?callback=?&roomid=" + roomid;
+			//sessionStorage.userinfo="";
+			$.getJSON(getrid, function(data) {
+		 				$("#tabs-4 .tx").append('<div class="list_gz"><div class="tx-left" style="color: #000000;" ><img src="'+purl+'/passport/avatar.php?uid='+data.rid+'"><br/>'+data.guanzhu+'人关注</div><div class="tx-right" ><div class="tx-title" style="color: #ff8900;">'+data.nickname+'</div><div class="tx-memo" style="color: #000000;">'+data.intro+'</div><div class="tx-memo" style="color: #000000;">房号 '+roomid+'<div class="wz" style="color: #000000;">'+data.province+' '+data.city+'</div></div><div class="tx-body" style="color: #000000;">还差'+data.earnbeancha+'经验升级<div class="wz star star'+data.levelid+'" style="color: #000000;"></div></div> </div><div class="clear"></div></div>');            
+		
+			});
+			}
+
+ 
+
+
+	function changebg(sn) {
+		$(".live_gift_number_9999").attr("src", "images/giftpic/live_gift_number_9999_default.png");
+		$(".live_gift_number_3344").attr("src", "images/giftpic/live_gift_number_3344_default.png");
+		$(".live_gift_number_1314").attr("src", "images/giftpic/live_gift_number_1314_default.png");
+		$(".live_gift_number_520").attr("src", "images/giftpic/live_gift_number_520_default.png");
+		$(".live_gift_number_365").attr("src", "images/giftpic/live_gift_number_365_default.png");
+		$(".live_gift_number_100").attr("src", "images/giftpic/live_gift_number_100_default.png");
+		$(".live_gift_number_99").attr("src", "images/giftpic/live_gift_number_99_default.png");
+		$(".live_gift_number_50").attr("src", "images/giftpic/live_gift_number_50_default.png");
+		var snr = $(sn);
+		var p = sn.substr(1);
+		snr.attr("src", "images/giftpic/" + p + "_selected.png");
+		//正则匹配
+		var number = p.match(/\d+/g);
+		$("#giftnum").val(number);
+		$("#giftnum").text(number);
+	}
+
+	function sen_gifts_black()
+	{
+		$(".live_gift_number_9999").attr("src", "images/giftpic/live_gift_number_9999_default.png");
+		$(".live_gift_number_3344").attr("src", "images/giftpic/live_gift_number_3344_default.png");
+		$(".live_gift_number_1314").attr("src", "images/giftpic/live_gift_number_1314_default.png");
+		$(".live_gift_number_520").attr("src", "images/giftpic/live_gift_number_520_default.png");
+		$(".live_gift_number_365").attr("src", "images/giftpic/live_gift_number_365_default.png");
+		$(".live_gift_number_100").attr("src", "images/giftpic/live_gift_number_100_default.png");
+		$(".live_gift_number_99").attr("src", "images/giftpic/live_gift_number_99_default.png");
+		$(".live_gift_number_50").attr("src", "images/giftpic/live_gift_number_50_default.png");
+		$('#giftgroup').hide(); 
+	}
+	
+	
+	//获取月排行榜
+	   //	var getrid = purl + "/index.php/Api/getrid?callback=?&roomid="+roomid;
+	   	//获取rid
+	   
+			//$.getJSON(getrid,function(data){
+					var getrid = purl + "/index.php/Api/getPasttimes?callback=?&rid="+rid;
+					
+					$.getJSON(getrid,function(data){
+					
+					     if(data!=0){
+					     	 var i=0; 
+						      while(i<data.length){ 
+						      	  // http://b.51miao.com.cn/passport/avatar.php?uid=515&size=middle
+						      
+						      	   $("#ran_ul_m").append("<li style='clear: both;'><img width='40px' src="+purl+"/passport/avatar.php?uid="+data[i]['voo'][0]['ucuid']+"&size=middle/><div class='rank_div'>"+data[i]['voo'][0]['username']+"<img style='float: right;' width='35px' src='img/leve/wealth10.png' /></div></li>")
+						      	   i++;
+						      }
+					      
+					     }
+					
+				   });
+					  
+				
+				
+					var getrid = purl + "/index.php/Api/show_getRankByShow?callback=?&eid="+rid;
+				  
+					$.getJSON(getrid,function(data){
+						
+						 if(data!=0){
+						 	 var i=0;
+						      while(i<data.length){  
+
+						      	   $("#ran_ul_w").append("<li><img width='40px' src="+purl+"/passport/avatar.php?uid="+data[i].ucuid+"/><div class='rank_div' style='color: #000000;' >"+data[i].username+"<img style='float: right;' width='35px' src='img/leve/wealth10.png' /></li>");
+						      	   i++;
+						      }
+						 	
+						 }
+					     
+					      
+					
+				   });
+					   
+				
+			//});
+		    //video点击事件处理
+		    $("#bv").click(function(){
+		    	$("#back_sp").toggle();
+		    	$("#roomid_sp").toggle();
+		    	$("#per_sp").toggle();
+		    });
+		    $("#back_sp").click(function(){
+		      
+		    	window.location.href='index.html';
+		    });
+		   
+			$("#rankw").css('background-color',"#ff8901");
+			$("#rankm").css('background-color',"#fff");
+			$("#rankm").css('color',"#ff8901");
+			$("#rankw").css('color',"#fff");
+			$("#rankw").click(function(){
+				$("#ran_div_w").toggle();
+				$("#ran_div_m").toggle();
+				$("#rankw").css('background-color',"#ff8901");
+				$("#rankm").css('background-color',"#fff");
+				$("#rankm").css('color',"#000");
+				$("#rankw").css('color',"#fff");
+			});
+			$("#rankm").click(function(){
+				$("#ran_div_w").toggle();
+				$("#ran_div_m").toggle();
+				$("#rankm").css('background-color',"#ff8901");
+				$("#rankw").css('background-color',"#fff");
+				$("#rankw").css('color',"#000");
+				$("#rankm").css('color',"#fff");
+			});
+			
+			
+			
+			$("#guanzhong_a").css('background-color',"#ff8901");
+			
+			
+
+</script>
+ <script language="JavaScript">
+       
+           //当前选项卡的选中状态
+        
+        	function tabs(id){
+        		sessionStorage.tabsid=id;
+        	}
+        	
+			
+			$(".snum_c").click(function(){
+				var number_c = $(this).text();
+				
+				$("#giftnum").val(number_c);
+				$("#selectnumber").hide();
+			});
+			//记录当前访问的浏览记录
+			if(localStorage.record!=undefined){
+				localStorage.record=roomid+",";
+			}else{
+				localStorage.record+=roomid+",";
+			}
+			
+			function selecttabs(id){
+				
+				$("#tabs_li"+id+" a").css("color","orange");
+				$("#tabs_li"+id+" a").css("background","#eee");
+				$("#tabs_li"+id).css("border-bottom","red");
+				for(var i=0;i<5;i++){
+					if(i!=id){
+						$("#tabs_li"+i+" a").css("color","#000000");
+						$("#tabs_li"+i+" a").css("background","#fff");
+						$("#tabs_li"+i+" a.aa").css("color","#fff");
+					}
+				}
+			}
+	
+			
+
+</script>
+
+
+<script type="text/javascript">
+	function biaoqing()
+	{
+		$("#biaoqing").toggle();
+	}
+	//表情处理
+ 	$("#biaoqing img").click(function()
+	{
+		var src = $(this).attr("src");
+		var re =/(face)\/\w*/;
+		var restr = src.match(re);
+		var bqstr = restr[0].replace("face/","");
+		nodeFace.addEmot('[`'+bqstr+'`]');
+		$("#biaoqing").hide();
+	})
+
+</script>>

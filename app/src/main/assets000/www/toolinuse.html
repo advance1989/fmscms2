@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>道具</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+			<script type="text/javascript">
+	    var  pagename='toolinuse';
+ 
+	    </script>
+		<link href="./css/common.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+	</head>
+	<body>
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a id="index.html" onclick="clicked(this.id);"><img src="./images/back_default.png" width="30px" height="30px"></a>
+			</div>
+			<div id="ordertitle">
+				<p id="recharge" style="color:white;">道具</p>
+			</div>
+			
+			
+				
+		</div>
+	    <div id="daoju_div" style="background-color: #FAFAFA; ">
+			<ul id="daoju" class="list-group">
+
+				
+			
+				 
+			</ul>
+         
+		</div> 
+	</body>
+</html>
+<script language="JavaScript">
+
+	$.getJSON(purl+"/index.php/Api/toolinuse?callback=?",function(data){
+		
+		
+		if(data['state']==-1){
+			$("daoju_div").append("<div>无道具</div>");
+		}else{
+			
+			
+			for(var i in data.toolinuse){
+				
+				$("#daoju").append("<li style='height: 57px; color: #000000; margin-top: 5px;'>名称:"+data['toolinuse'][i]['name']+"  <br>    功能: "+data['toolinuse'][i]['props']+"到期时间<br>"+data['toolinuse'][i]['expire']+"</li>");
+			}
+
+			
+		}
+		
+	});
+</script>

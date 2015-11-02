@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>举报</title>
+		<script src="js/common.js"></script>
+		
+		<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script>	-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+			<script type="text/javascript">
+	    var  pagename='report';
+ 
+	    </script>
+		<link href="./css/common.css" rel="stylesheet" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<style type="text/css">
+		   .money_li{
+			   	width: 50%;
+			   	float: left;
+			   	height: 40px;
+			   	margin-top: 10px;
+			   	text-align: center;
+		   }
+		   .money{ padding-top:20px;}
+		   .money_div{
+			   	margin: auto; 
+			   	width: 80%;
+			   	height: 30px;
+			   	line-height: 30px;
+			   	font-size: 16px;
+			   	border-radius: 20px;
+			  	font-weight:  400;
+			  	padding: 5px 0;
+			  	background: #eee;
+			  	color: #fff;
+				background:#FF8900;
+		   }
+		   .money_div em{
+		   		display: none;		   	
+		   }
+		   .money_div input{
+		   		display: none;		   	
+		   }
+		   .on{
+			  	background: #fff;
+			  	color: #ff8901;
+		   }
+		   .on em{
+		   	  display: inline;
+		   	  color: #ff8901;
+		   }	
+		   .submit{
+		   	width: 90%;
+		   	height: 40px;
+		   	line-height: 40px;
+		   	margin: 10px auto 0 auto;
+		   	border: none;
+		   	background: #6f4411;
+		   	color: #fff;
+		   	text-align: center;
+		   	border-radius: 5px;
+		   	font-size: 16px;
+               		   	
+		   }	   
+		</style>
+	</head>
+	<body style="background:#eee;">
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a id="index.html" onclick="javascript:history.back();"><img src="./images/back_default.png" width="30px" height="30px"></a>
+			</div>
+			<div id="ordertitle">
+				<p id="recharge" style="color:white;">举报</p>
+			</div>
+			
+			
+				
+		</div>
+		<font size="3px" color="#E0E0E0" style="margin-left: 2%;display: none;">举报</font>
+		<form name="report" action="" method="post">
+		<div class="money">
+			<ul class="money_ul">
+				<li class="money_li">
+					 <div class="money_div">色情交易<em>√</em>
+					 	<input type="checkbox" name='report[]' value="色情交易">
+					 </div></li>
+				<li class="money_li"><div class="money_div">垃圾广告<em>√</em>
+					<input type="checkbox" name='report[]' value="垃圾广告">
+				</div></li>
+				<li class="money_li"><div class="money_div">人身攻击<em>√</em>
+					<input type="checkbox" name='report[]' value="人身攻击">
+				</div></li>
+				<li class="money_li"><div class="money_div">敏感信息<em>√</em>
+					<input type="checkbox" name='report[]' value="敏感信息">
+				</div></li>
+				<li class="money_li"><div class="money_div">虚假中奖信息<em>√</em>
+					<input type="checkbox" name='report[]' value="虚假中奖信息">
+				</div></li>
+				<li class="money_li"><div class="money_div">其他<em>√</em>
+					<input type="checkbox" name='report[]' value="其他">
+				</div></li>
+				
+			</ul>			
+		</div>
+        <div class="clear"></div>
+		<div style="text-align: center; margin-top:50px;">
+		      <input type="button" name="submit" value="提交" class='submit' id="buttonok" style=" font-family:'微软雅黑';">
+		</div>      	
+		</form>
+		
+		<script>
+		  $(document).ready(function(){
+		  	 $(".money_div").click(function(){
+		  	 	 $(this).toggleClass("on") ;
+		  	 	 if($(this).children("input").attr("checked") == "checked"){
+		  	 	 		$(this).children("input").removeAttr("checked");
+		  	 	 }else{
+		  	 	 	  $(this).children("input").attr("checked","true");
+		  	 	 }
+
+		  	 })  
+		  	 
+		  	 $("#buttonok").click(function(){
+		  	 	      if(typeof($(".money_ul input[type=checkbox]:checked").val()) == "undefined"){
+		  	 	      	 alert("请选择举报类别");
+		  	 	      }else{
+		  	 	      	
+		  	 	      	alert("提交成功");
+		  	 	      }
+		  	 	
+		  	 })
+		  })
+		
+		</script>
+		
+	</body>
+</html>

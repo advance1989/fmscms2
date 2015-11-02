@@ -1,0 +1,854 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>直播</title>
+
+    <script type="text/javascript">
+	    var  pagename='show';
+
+	    </script>
+    <script language="JavaScript" src="js/json2.js"></script>
+    <link href="css/common.css" rel="stylesheet" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+    <style>
+        * {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        }
+        body {
+        width: 100%;
+        background: #0077DD;
+        }
+        a,
+        input,
+        button {
+        outline: none;
+        border: none;
+        }
+        #tabs {
+        margin: 0;
+        padding: 0;
+        font-family:"微软雅黑";
+        }
+        #tabs-1 {
+        padding: 0;
+        padding: 0;
+        overflow-y: auto;
+        z-index: 200;
+        }
+        #tabs-2 {
+        font-family:"微软雅黑";
+        overflow-y: auto;
+        padding:10px 10px;
+
+        }
+        .liantianinput {
+        z-index: 201;
+        width: 100%;
+        height: 51px;
+        background-color: #FFFFFF;
+        border-top:1px solid #c6c6c6;
+        position: fixed;
+        bottom: 0;
+        box-shadow:1px -1px 2px #d4d4d4;
+
+        }
+        .liantianinput a{ float:left; color:#333; }
+        .liantianinput input {
+        width: 61%;
+        height: 30px;
+        /*line-height:30px;*/
+        font-size:12px;
+        border:1px solid #eee;
+        background: #FFFFFF;
+        margin-left: 15px;
+        margin-right:10px;
+        margin-top: 10px;
+        float: left;
+        border-radius:15px;
+        }
+        .liantianinput img {
+        margin-top: 10px;
+        width: 25px;
+
+        }
+        .liaotian {
+        background-color: #F1F1F1;
+        } .list-group-item {
+        background: none;
+        }
+        .giftlist {
+        position: absolute;
+        background: #ffca8d;
+        height: 300px;
+        overflow: auto;
+        }
+        #giftnum {
+        width: 70px;
+        height: 35px;
+        float: left;
+        opacity: 0.9;
+        color: #000;
+        }
+        .giftgroup {
+        background: #fc8700;
+        width: 100%;
+        height: 50%;
+        position: fixed;
+        opacity: 9.9;
+        font-size: 10px;
+        bottom: 0;
+        left: 0;
+        display: none;
+        }
+        #bv {
+        background: #000;
+        }
+        .xinxi {
+        width: 140px;
+        position: absolute;
+        background:rgba(0,0,0,0.4);
+        height: 50px;
+        bottom: 50px;
+        padding-left:10px;
+        left:20px;
+        padding-top:5px;			}
+
+        .tip_roomid {
+        position: absolute;
+        top: 20px;
+        color: #FFF;
+        }
+        .tip_onlinenum {
+        background: url(images/icon_mine.png) no-repeat;
+        background-size: 16px;
+        margin-left: 10px;
+        display: block;
+        position: absolute;
+        top: 55px;
+        color: #FFF;
+        padding-left: 30px;
+        }
+        .tip_img {
+
+        background-size: 16px;
+
+        display: block;
+        position: absolute;
+        top: 20px;
+        color: #FFF;
+
+        }
+
+        .guanzhu {
+        background: #381F58;
+        border-radius: 50% 50% 50% 50%;
+        float: right;
+        width: 14%;
+        height: 50px;
+        right: 0;
+        bottom: 85%;
+        position: absolute;
+        }
+        .breadcrumb li {
+        background: url(images/bg_gift.png) no-repeat center center;
+        background-size: 60px;
+        display: block;
+        width: 70px;
+        height: 60px;
+        margin: 8px 5px;
+        margin-bottom: 40px;
+        padding-top: 10px;
+        text-align:center;
+        }
+        .breadcrumb li img {} .giftname {
+        font-size: 10px;
+        text-overflow: ellipsis;
+        }
+        .needcoin {
+        font-size: 9px;
+        padding-left: 3px;
+        color: #ff8900;
+        }
+
+        .c_black {
+        opacity: 0.7;
+        position: fixed;
+        right: 0;
+        top: 52%;
+        }
+        /*选择礼物数量**/
+
+        .selectgift_left {
+        float: left;
+        height: 100%;
+        width: 72%;
+        /*background: #000000;*/
+        }
+        .selectgift_right {
+        float: right;
+        width: 21%;
+        height: 100%;
+        margin-right: 7%;
+        }
+        /*各个数量小div**/
+
+        .select_gift_num {
+        /*background: #0166FF;*/
+
+        float: left;
+        width: 70px;
+        height: 70px;
+        float: left;
+        margin: 8px;
+        /*border: dotted;*/
+        }
+        #s_gifname {
+        overflow: hidden;
+        font-size: 17px;
+        color: #ffe2c0;
+        width: 50px;
+        text-overflow: ellipsis;
+        /*word-wrap: break-word;*/
+        }
+        .hr{
+        width: 100%;
+
+        margin-top: 0px;
+        border:1px  solid #DEDEDE;
+
+        }
+
+        .rank_div{
+        width: 70%;
+        float: right;
+        height: 20px;
+        margin-top: 10px;"
+        }
+
+        #selectnumber
+        {
+        background: #F0FFF0;
+        width: 95px;
+        height: 210px;
+        position:absolute;
+        bottom:20%;
+        right: 30%;
+        color:#B37AA6;
+        text-align: center;
+
+
+        }
+        #selectnumber hr
+        {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        #selectnumber div
+        {
+        height: 40px;
+        padding-top: 10px;
+        }
+        .ui-state-hover{ background:#eee;}
+
+
+
+
+    </style>
+	   <style>
+            #tabs-4{
+
+            overflow-y: auto;
+            }
+            #tabs-4 .tx{
+            min-height: 90px;
+            line-height:20px;
+            }
+            #tabs-4 .tx .tx-left{
+            float:left;
+            width: 25%;
+            text-align: center;
+            color:#eee;
+            line-height: 30px;
+            font-size: 12px;
+            }
+            #tabs-4 .tx .tx-left img{
+            border:none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            float: none;
+            }
+
+            #tabs-4 .tx .tx-right{
+            float:left;
+            width: 60%;
+            margin-left: 10%;
+            }
+            #tabs-4 .tx .tx-right .tx-title{
+            font-size: 16px;
+            color: #fff;
+            font-weight: bold;
+
+            }
+            #tabs-4 .tx .tx-right .tx-memo{
+            color:#DDDDDD;
+            font-size: 10px;
+
+            }
+            #tabs-4 .tx .tx-right .tx-memo .wz{
+            float: right;
+            background: url(images/location.png) no-repeat left center;
+            padding: 0 0 0 15px;
+            font-size: 10px;
+
+            }
+            #tabs-4 .tx .tx-right .tx-body{
+            color:#fff;
+            font-size: 10px;
+            height: 20px;
+            }
+            #tabs-4 .tx .tx-right .tx-body .wz{
+            float: right;
+            }
+            #tabs-4 .tx .tx-right .tx-tiao{
+            height: 2px;
+            background: url(images/abc_list_selector_disabled_holo_light.9.png) ;
+
+            }
+            #tabs-4 .tx .tx-right .tx-tiao .tx-tiao-b{
+            height: 2px;
+            background: #fff;
+
+            }
+            #tabs-4 ul{
+            clear: both;
+
+            }
+            #tabs-4 ul li{
+            background:#ff8900;
+            padding: 20px 0px 10px 0px;
+            list-style: none;
+            width: 25%;
+            text-align: center;
+            float: left;
+            margin-top: 10px;
+            line-height: 30px;
+
+
+            }
+            #tabs-4 ul li div{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #E0E0E0;
+            line-height: 30px;
+            margin: 0 auto;
+            background:#ffd09a;
+            }
+            #tabs-4 ul li div img{
+            border:none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            float: none;
+
+            }
+        </style>
+		<style>
+.bodyzone_cap_now{
+ float: left;
+  margin-left: 0px;
+  height: 35px;
+  width: 20%;
+ 
+  font: 14px/32px Verdana, Arial, Helvetica, sans-serif;
+ 
+  text-align: center;
+  cursor: pointer;
+ 
+}
+.bodyzone_cap_now a{
+ color:orange;
+ }
+.bodyzone_cap_list{
+  float: left;
+  margin-left: 0px;
+  height: 35px;
+  width: 20%;
+ 
+  font: 14px/32px Verdana, Arial, Helvetica, sans-serif;
+  color: #3a3a3a;
+  text-align: center;
+  cursor: pointer;
+}
+</style>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="js/jquery.1.7.1min.js"></script>
+   	<script src="js/socket.io.js"></script>
+		<script src="js/wapchat.js"></script>
+
+    <script type="text/javascript">
+			var pagename = 'order';
+			var purl = "http://b.51miao.com.cn";
+
+			 function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                     context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            }
+
+		</script>
+    <script src="js/json2.js"></script>
+    <script src="js/chatRoom.js"></script>
+ <link type="text/css" href="css/bsbtn.css" rel="stylesheet" />
+ <script>
+
+window.onload = function(){
+
+  var tab_t_li = $("#bodyzone_cap").children("li");
+  var tab_c_li = $("#tab_body").children("div");
+  var len = tab_t_li.length;
+	var i=0;  
+    for(i=0; i<len; i++){
+      tab_t_li[i].index = i;
+      tab_t_li[i].onmouseover= function(){
+          for(i=0; i<len; i++){
+              tab_t_li[i].className = 'bodyzone_cap_list';
+              tab_c_li[i].className ="hide";
+            }
+            tab_t_li[this.index].className = 'bodyzone_cap_now';
+            tab_c_li[this.index].className ="show";
+			 
+        }
+    }
+	
+	
+	
+	  var tab_t_li2 = $("#bodyzone_cap2").children("li");
+  var tab_c_li2 = $("#tab_body2").children("div");
+  var len = tab_t_li2.length;
+	var i=0;
+    for(i=0; i<len; i++){
+      tab_t_li2[i].index = i;
+      tab_t_li2[i].onmouseover = function(){
+          for(i=0; i<len; i++){
+              tab_t_l2i[i].className = 'bodyzone_cap_list';
+              tab_c_li2[i].className ="hide";
+            }
+            tab_t_li2[this.index].className = 'bodyzone_cap_now';
+            tab_c_li2[this.index].className ="show";
+
+        }
+    }
+
+
+
+    	if(localStorage.getItem('giflist')!=undefined){
+		data=localStorage.getItem('giflist');
+		data=eval("("+data+")");
+
+		for (var i = 0; i < data.length; i++) {
+
+				switch (data[i]['sid']) {
+					case "1":
+						$("#gift_ul1").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "2":
+						$("#gift_ul2").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "3":
+						$("#gift_ul3").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;'  class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+					case "6":
+						$("#gift_ul6").append("<li onclick='giftli(" + data[i]['id'] + ")' style='float: left;' id=g_" + data[i]['id'] + "><img width='40' height='40' src='http://www.xiuvv.com" + data[i]['giftIcon'] + "'/><div style='margin-top: 18px;padding-left: 3px;' class='giftname'>" + data[i]['giftname'] + "</div><span class='needcoin'>" + data[i]['needcoin'] + "秀币</span></li>");
+						break;
+				}
+			}
+
+	}
+}
+
+</script>
+    <script type="text/javascript" charset="utf-8">
+
+			var s_prive = 0;
+			var roomid = GetQueryString("roomid");
+	    alert("roomid"+purl);
+	$.getJSON(purl + '/index.php/Appapi/getshowinfo?ajax=showinfo&callback=?', function(json) {
+			   alert("fffffff");
+
+
+			});
+
+/**
+			function initroomid(show) {
+
+				init_roomid(show.emceeId, roomid, show.emceeNick,show.username);
+			}
+			var _show = {
+				"isHD": 0,
+				"vip": "",
+				"enterChat": 0,
+				"emceeId": "",
+				"fps": "",
+				"cdnl": "",
+				"cdn": "",
+				"zddk": "",
+				"pz": "",
+				"zjg": "",
+				"height": "",
+				"width": "",
+				"emceeLevel": "",
+				"goodNum": "",
+				"emceeNick": "",
+				"oldseatnum": "0",
+				"songPrice": "1500",
+				"offline": 0,
+				"roomId": "",
+				"titlesUrl": "",
+				"titlesLength": "4",
+				"bgimg": ""
+			};
+				    alert(purl);
+			$.getJSON(purl + '/index.php/Appapi/getshowinfo?ajax=showinfo&callback=?', function(json) {
+			   alert("ro0mida"+roomid);
+				_show = {
+					"isHD": 0,
+					"enterChat": 0,
+					"emceeId": json.id,
+					"fps": json.fps,
+					"cdnl": json.cdn1,
+					"cdn": json.cdn,
+					"zddk": json.zddk,
+					"pz": json.pz,
+					"zjg": json.zjg,
+					"height": json.height,
+					"width": json.widht,
+					"emceeLevel": 1,
+					"username": json.username,
+					"goodNum": json.curroomnum,
+					"emceeNick": json.nickname,
+					"oldseatnum": "0",
+					"songPrice": "1500",
+					"offline": 0,
+					"roomId": roomid,
+					"titlesUrl": "",
+					"titlesLength": "4",
+					"bgimg": json.bgmig,
+					"password": json.password
+				};
+				 alert("_show"+_show);
+				initroomid(_show);
+			});
+
+			**/
+
+
+			 //改变聊天模式
+			function zhuangtai() {
+					var msgtype = $("#msgtype").val();
+					if (msgtype != 0) {
+						Chat.is_private = 1;
+						s_prive = 1;
+					} else {
+						s_prive = 0;
+					}
+				}
+		 
+			/**
+			$(function() {
+				if(sessionStorage.tabsid!=undefined){
+
+        		 $( "#tabs" ).tabs({ active: sessionStorage.tabsid});
+
+        	    }
+
+        	    $("#gifttabs").tabs();
+
+			});
+
+			**/
+			var ishidden = 1;
+			 //礼物隐藏显示
+			function viewGiftList() {
+				$(".giftlist").toggle();
+				if (ishidden == 1) {
+					$("#tabs").hide();
+					ishidden = 0;
+				} else {
+					$("#tabs").show();
+					ishidden = 1;
+				}
+				$('#giftgroup').hide();
+			}
+		</script>
+
+</head>
+
+<body>
+<div class="giftlist" style="display: none;" id="gifttabs">
+
+
+    <ul id="bodyzone_cap2">
+        <li class="bodyzone_cap_list"><a href="#putong">普通</a></li>
+        <li  class="bodyzone_cap_list"><a href="#gaoji">高级</a></li>
+        <li  class="bodyzone_cap_list"><a href="#haohua">豪华</a></li>
+        <li  class="bodyzone_cap_list"><a href="#changjing">场景</a></li>
+    </ul>
+	<div id="tab_body2">
+    <div id="putong">
+        <ol class="breadcrumb" id="gift_ul1" style="list-style: none;">
+
+        </ol>
+    </div>
+    <div id="gaoji">
+        <ol class="breadcrumb" id="gift_ul2" style="list-style: none;">
+
+        </ol>
+    </div>
+    <div id="haohua">
+        <ol class="breadcrumb" id="gift_ul3" style="list-style: none;">
+
+        </ol>
+    </div>
+    <div id="changjing">
+        <ol class="breadcrumb" id="gift_ul6" style="list-style: none;">
+
+        </ol>
+    </div>
+    <br />
+  </div>
+    <div class="giftgroup" id="giftgroup"/>
+
+
+
+
+
+    <div style="width: 100%;height:35px;background:url(images/live_gift_return.png) no-repeat;background-size: 12px;margin-top: 10px;margin-left: 25px;" onclick="sen_gifts_black()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额:<img width="15px" src="img/carpic/mine_money.png"></div>
+
+    <div class="selectgift_left">
+        <img class="select_gift_num live_gift_number_9999" onclick="changebg('.live_gift_number_9999')" src="images/giftpic/live_gift_number_9999_default.png" />
+        <img class="select_gift_num live_gift_number_3344" onclick="changebg('.live_gift_number_3344')" src="images/giftpic/live_gift_number_3344_default.png" />
+        <img class="select_gift_num live_gift_number_1314" onclick="changebg('.live_gift_number_1314')" src="images/giftpic/live_gift_number_1314_default.png" />
+        <img class="select_gift_num live_gift_number_520" onclick="changebg('.live_gift_number_520')" src="images/giftpic/live_gift_number_520_default.png" />
+        <img class="select_gift_num live_gift_number_365" onclick="changebg('.live_gift_number_365')" src="images/giftpic/live_gift_number_365_default.png" />
+        <img class="select_gift_num live_gift_number_100" onclick="changebg('.live_gift_number_100')" src="images/giftpic/live_gift_number_100_default.png" />
+        <img class="select_gift_num live_gift_number_99" onclick="changebg('.live_gift_number_99')" src="images/giftpic/live_gift_number_99_default.png" />
+        <img class="select_gift_num live_gift_number_50" onclick="changebg('.live_gift_number_50')" src="images/giftpic/live_gift_number_50_default.png" />
+
+    </div>
+
+    <div class="selectgift_right">
+        <center><div class="" id="s_giftpic"></div></center>
+        <center>
+            <nobr id="s_gifname"></nobr>
+        </center>
+
+        <center><img src="images/giftpic/live_gift_number_send_x.png" /> </center>
+        <center>	<input type="text" style="border:none;border-bottom-color:#E6D9E2 ;border-bottom-width: 1px;border-bottom-style: solid ;background-color: transparent;float: left;" id="giftnum" readonly onclick="$('#selectnumber').toggle()" /></center>
+
+        <span style="float: left;color:#E6D9E2;">个</span>
+        <br style="clear: both;">
+        <button style="background: #643e11; margin-left:10px; color:#fff; height: 55px;width: 60px;" onclick="GiftCtrl.sendGift()"> 赠送</button>
+    </div>
+    <!--<input class="form-control" id="giftnum" name="giftnum" type="number" placeholder="数量" />-->
+    <input id="gift_id" name="gift_id" type="hidden" />
+    <!--					<div class="mui-content-padded">
+                <span class="mui-icon mui-icon-arrowthinup" onclick="giftnum('1')"></span>
+                <span class="mui-icon mui-icon-arrowthindown" onclick="giftnum('-1')"></span>
+            </div>
+-->
+    <!--	<button class="btn btn-default" onclick="giftnum('-1')">-</button>
+            <button class="btn btn-default" onclick="giftnum('1')">+</button>-->
+    <!--					<br style="clear: both;">
+            <span class="mui-icon mui-icon-paperplane" onclick="GiftCtrl.sendGift()"></span>
+            <span class="mui-icon mui-icon-closeempty"  onclick="viewGiftList()"></span>-->
+
+    <!--<button class="btn btn-default" onclick="GiftCtrl.sendGift()">送礼物</button>
+            <button class="btn btn-default" onclick="viewGiftList()">取消</button>-->
+
+    <div id="selectnumber" style="display: none;overflow-x: scroll;">
+        <div class="snum_c">1
+        </div>
+        <hr />
+        <div class="snum_c">2</div>
+        <hr />
+        <div class="snum_c">3</div>
+        <hr />
+        <div class="snum_c">4</div>
+        <hr />
+        <div class="snum_c">5</div>
+        <hr />
+        <div class="snum_c">6</div>
+        <hr />
+
+        <div class="snum_c">7</div>
+        <hr />
+        <div class="snum_c">8</div>
+        <hr />
+        <div class="snum_c">9</div>
+        <hr />
+        <div class="snum_c">10</div>
+        <hr />
+        <hr />
+        <div class="snum_c">88</div>
+        <hr />
+
+        <div class="snum_c">66</div>
+        <hr />
+        <div class="snum_c">33</div>
+        <hr />
+        <div class="snum_c">18</div>
+        <hr />
+        <div class="snum_c">10</div>
+        <hr />
+
+    </div>
+
+</div>
+<img src="images/live_video_back_default.png"  class="c_black"  style="width: 40px;" onclick="viewGiftList()" />
+<!--<span class="mui-icon mui-icon-undo c_black" onclick="viewGiftList()"></span>-->
+</div>
+
+
+
+<div id="tabs">
+    <ul style="height:40px; line-height:40px;" id="bodyzone_cap">
+        <li class="bodyzone_cap_list"><a    onclick="tabs(0)">公屏</a></li>
+        <li  class="bodyzone_cap_list" ><a   onclick="tabs(1)">观众</a></li>
+        <li  class="bodyzone_cap_list"><a   onclick="tabs(2)">贡献</a></li>
+        <li  class="bodyzone_cap_list" ><a   id="showmore" onclick="tabs(4)">更多</a></li>
+  
+
+  </ul>
+<div id="tab_body">
+    <div id="tabs-1">
+        <!--
+        <SELECT name="msgtype" id="msgtype" onchange="zhuangtai()">
+            <OPTION value="0">公聊</OPTION>
+            <OPTION value="2">私聊</OPTION>
+        </SELECT>-->
+
+        <div class="liaotian" id="chat_hall"></div>
+        <!--<div class="qiaoqiaohua panel-default" id='qiaoqiaohua' style="margin-top: 20px;"></div>-->
+
+        <!--				<p>对：
+            <select name="to_nickname" id="to_nickname">
+                <OPTION value="0">所有人</OPTION>
+            </select>
+        </p>-->
+        <input type="hidden" value="0" />
+        <div class="liantianinput" ><a href="index.html" style=" margin:3px 25px 0px 25px;"><img src="img/carpic/goback.png" style="width:12px; height:23px;" /></a><!-- <a href="#"><img src="images/bq.png" /></a>-->
+            <input class="form-control" placeholder="和主播尽情的聊天吧" class="btn btn-default dropdown-toggle" type="text" class="in_tx" id="msg" onKeyDown="Chat.submitForm(event);" name="msg" />
+            <!--<img src="images/live_sendmessage_image_default.png" onClick="Chat.doSendMessage();" />-->
+            <img src="images/live_send_gift.png" onclick="viewGiftList()" />
+        </div>
+    </div>
+    <div id="tabs-2" style="background-color:#F1F1F1 ;">
+
+        <div style="color: #7B7B7B;"><font size="2" face="黑体"><b>观众</b></font></div>
+
+        <div id="guanzhong_div" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden;">
+            <ul id="guanzhong_ul" style="list-style: none;">
+
+            </ul>
+        </div>
+
+    </div>
+    <div id="tabs-3" style="background-color:#F1F1F1;">
+        <div style=" width: 60%; border:none; margin:0px auto 20px; height: 20px;" id="segmentedControl" class="mui-segmented-control">
+            <button style="color: #000000; border-right:none ; text-decoration: none; width: 50%; float: left; font-family:'微软雅黑';" id="rankw" class="mui-button-row   mui-active" href="#item1mobile">本场排行</button>
+            <button style="color: #000000; border-left:none ; text-decoration: none; width: 50%; float: right; font-family:'微软雅黑';" id="rankm" class="mui-button-row " href="#item2mobile">本月排行 </button>
+
+        </div>
+        <div id="ran_div_w" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden; border-top:1px solid #d7d7d7;">
+            <ul id="ran_ul_w">
+                <li><img width="40px" src="img/carpic/testimage.png" />
+                    <div class="rank_div" style="color: #000000;" >...星月<img style="float: right;" width="35px" src="img/leve/wealth10.png" />
+
+                    </div>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <div id="ran_div_m" style="height: 100%;OVERFLOW-Y: none; OVERFLOW-X:hidden; display: none; border-top:1px solid #d7d7d7;">
+            <ul id="ran_ul_m">
+
+
+            </ul>
+
+        </div>
+    </div>
+    <!---
+    <div id="tabs-7" style="background-color:#F1F1F1 ; height:400px; padding:10px 10px;">
+
+               <div style="color: #7B7B7B;"><font size="2" face="黑体"><b>房间资料</b></font></div>
+
+
+
+       </div>
+
+       -->
+
+    <div id="tabs-4" style="background-color:#F1F1F1 ;">
+        <div class="tx">
+
+        </div>
+        <ul>
+            <li style="color: #fff;">
+                <div>
+                    <a href="recharge.html"><img src="images/icon_more_charge.png" ></a>
+                </div>
+
+                充值
+            </li>
+            <li style="color: #fff;">
+                <div>
+                    <a href="share.html"><img src="images/icon_more_share.png" ></a>
+                </div>
+
+                分享
+            </li>
+            <li style="color: #fff;">
+                <div>
+                    <a href="report.html"><img src="images/icon_more_report.png" ></a>
+                </div>
+
+                举报
+            </li>
+            <li style="color: #fff;">
+                <div>
+                    <a href="toolItem.html"><img src="images/icon_more_mall.png" ></a>
+                </div>
+
+                商城
+            </li>
+
+        </ul>
+     	<input type="hidden" id="ifnew" value="0">
+
+
+    </div>
+	</div>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>排行榜</title>
+        <script type="text/javascript" src="js/jquery.min.js"></script> 	
+		<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script>-->
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript">
+	    var  pagename='order';
+	    function show(roomid,eid){
+  navigator.intent.demo(roomid,eid);
+  }
+
+	    </script>
+
+
+		<link href="./css/common.css" rel="stylesheet" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		  
+	</head>
+
+	<body>
+		<!-- 排行顶部导航 -->
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a id="index.html" onclick="clicked(this.id);"><img src="./images/back_default.png" width="25px" height="25px"></a>
+	</div>  
+			<div id="ordertitle" onclick="ordernaviblock();">
+				<p id="ordername" style="color:white;position:absolute; left:33%;">富豪排行榜</p>
+			</div>
+			<div class="ordernavi">
+				<a href="javascript:void(0);" onclick="ordernaviblock();"><img src="./images/mine_avatar_album_background.png" width="20px" height="20px"style="color:white;margin-left:52%" ></a></div>
+		</div>
+		<div class="ordernavilist" style="display:none;">
+			<ul>
+				<li style="background-color:#FF6735;">
+					<div class="ordernaviimg"><img src="./images/audience.png"></div>
+					<div id="ordernavititle">
+						<p><a href="#" onclick="getorderlists(1);">富豪排行榜</a></p>
+					</div>
+				</li>
+				<li style="background-color:#FF1442;">
+					<div class="ordernaviimg"><img src="./images/audience.png"></div>
+					<div id="ordernavititle">
+						<p><a href="#" onclick="getorderlists(2);">人气排行榜</a></p>
+					</div>
+
+				</li>
+				<li style="background-color:#E4007F;">
+					<div class="ordernaviimg"><img src="./images/audience.png"></div>
+					<div id="ordernavititle">
+						<p><a href="#" onclick="getorderlists(3);">明星排行榜</a></p>
+					</div>
+
+				</li>
+				<li style="background-color:#9C27B0;">
+					<div class="ordernaviimg"><img src="./images/audience.png"></div>
+					<div id="ordernavititle">
+						<p><a href="#" onclick="getorderlists(4);">礼物排行榜</a></p>
+					</div>
+				</li>
+
+			</ul>
+
+		</div>
+
+		<!--TOP20-明星排行榜 begin-->
+
+		<div class="topreviews" id="mingxinglists" style="display:none;">
+
+			<!-- <h2 class="rtitle">TOP20-明星排行榜    </h2>    -->
+
+			<div class="review-v">
+
+				<ul class="star_tab">
+
+					<li onClick="turn2(1,4,1);" id="lm1_1" class="on"><span class="no">日榜</span></li>
+
+					<li onClick="turn2(2,4,1);" id="lm1_2" class=""><span>周榜</span></li>
+
+					<li onClick="turn2(3,4,1);" id="lm1_3" class=""><span>月榜</span></li>
+
+					
+
+				</ul>
+
+			</div>
+			<div style="clear:both;">
+				<ul class="top-ul" id="content1_1">
+
+				</ul>
+
+				<ul class="top-ul" id="content1_2" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content1_3" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content1_4" style="display:none;">
+
+				</ul>
+			</div>
+			<div style="width:100%; height:100px;">
+
+			</div>
+		</div>
+		<!--TOP20-人气排行榜 begin-->
+
+		<div class="topreviews" id="renqilists" style="display:none;">
+
+			<!-- <h2 class="rtitle">TOP20-人气排行榜 </h2>-->
+
+			<div class="review-v">
+
+				<ul class="star_tab">
+
+					<li onClick="turn2(1,4,2);" id="lm2_1" class="on"><span class="no">日榜</span></li>
+
+					<li onClick="turn2(2,4,2);" id="lm2_2" class=""><span>周榜</span></li>
+
+					<li onClick="turn2(3,4,2);" id="lm2_3" class=""><span>月榜</span></li>
+
+					
+
+				</ul>
+
+			</div>
+			<div style="clear:both;">
+				<ul class="top-ul" id="content2_1">
+
+				</ul>
+
+				<ul class="top-ul" id="content2_2" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content2_3" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content2_4" style="display:none;">
+
+				</ul>
+			</div>
+			<div style="width:100%; height:100px;">
+
+			</div>
+		</div>
+		<!--TOP20-富豪排行榜 begin-->
+
+		<div class="topreviews" id="fuhaolists" style="display:block;">
+
+			<!--  	  <h2 class="rtitle">TOP20-富豪排行榜 </h2>
+-->
+			<div class="review-v">
+
+				<ul class="star_tab">
+
+					<li onClick="turn2(1,4,3);" id="lm3_1" class="on"><span class="no">日榜</span></li>
+
+					<li onClick="turn2(2,4,3);" id="lm3_2" class=""><span>周榜</span></li>
+
+					<li onClick="turn2(3,4,3);" id="lm3_3" class=""><span>月榜</span></li>
+
+				
+
+				</ul>
+
+			</div>
+			<div style="clear:both;">
+				<ul class="top-ul" id="content3_1">
+
+				</ul>
+
+				<ul class="top-ul" id="content3_2" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content3_3" style="display:none;">
+
+				</ul>
+
+				<ul class="top-ul" id="content3_4" style="display:none;">
+
+				</ul>
+				<div style="width:100%; height:100px;">
+
+				</div>
+			</div>
+		</div>
+		<div class="topreviews" id="liwulists" style="display:none;">
+
+			<!--  	  <h2 class="rtitle">TOP20-礼物排行榜 </h2>
+-->
+			<div class="review-v">
+
+				<ul class="star_tab">
+
+					<li onClick="turn2(1,4,4);" id="lm4_1" class="on"><span class="no">日榜</span></li>
+
+					<li onClick="turn2(2,4,4);" id="lm4_2" class=""><span>周榜</span></li>
+
+					<li onClick="turn2(3,4,4);" id="lm4_3" class="" ><span>月榜</span></li>
+
+					
+
+				</ul>
+
+			</div>
+			<div style="clear:both;">
+				<ul class="top-ul" id="content4_1"></ul>
+
+				<ul class="top-ul" id="content4_2" style="display:none;"></ul>
+
+				<ul class="top-ul" id="content4_3" style="display:none;"></ul>
+
+				<ul class="top-ul" id="content4_4" style="display:none;"></ul>
+			</div>
+			<div style="width:100%; height:100px;">
+
+			</div>
+		</div>
+
+		<!--底部导航-->
+		<div class="bottomnavi">
+			<div id="footer">
+				<div class="gw fixed" style="margin:0 auto;">
+					<ul id="doc">
+						<li>
+							<a title="首页" id="index.html"  onclick="clicked(this.id);" >
+								<dl id="sy">
+									<dt class="sy"> </dt>
+									<dd>首页</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+						   <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+								<dl id="ph">
+									<dt class="ph" style=" background:url(./images/main_tab3_pressed.png) no-repeat top center;"></dt>
+									<dd style="color:#ff8900;">排行</dd>
+								</dl>
+							</a>
+						</li>
+
+						<li> 
+		    <a title="我" onclick="userinfo()">
+                <dl id="w">
+                    <dt class="w" style="
+ background:url(../images/main_tab4_default.png no-repeat top center;"></dt>
+                    <dd>我</dd>
+                </dl>
+            </a>
+	    </li> 
+        <li>
+		    <a title="更多" id="find.html" onclick="clicked(this.id);">
+                <dl id="fx">
+                    <dt class="fx">  </dt> 
+                    <dd>更多</dd>
+                </dl>
+            </a>
+	    </li>  
+					</ul>
+		</div>  
+	</body>
+
+</html>
+<!--
+	2015.08.18
+	lvzhihui
+-->
+<script language="JavaScript">
+function userinfo(){
+	
+			$.ajax({
+				url: purl + "/index.php/Api/getuserid",
+				type: "get",
+				dataType: "jsonp",
+				success: function(data, textStatus) {
+					if (data == '未登录') {
+						window.location.href = "login.html";
+					}else{
+						window.location.href = "userinfo.html";
+					}
+				}
+			}); 
+
+}
+// 动画窗口
+function animateWindow(){
+	ws.show("pop-in");
+}
+
+function turn2(n,m,x){
+	var timestamp = Date.parse(new Date());
+	turn(n,m,x);
+	//明星日榜    
+
+	
+	if(x==1 && n==1){
+
+		if(localStorage.getItem("mingxingday")==undefined|| localStorage.getItem("up_mingxingday") == undefined||timestamp > parseInt(localStorage.getItem("up_mingxingday"))+dayuptime) 
+		{
+			
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=mingxingday&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("mingxingday",strjson);
+				localStorage.setItem("up_mingxingday",timestamp);
+				$("#content1_1").html(json.ul);
+			});
+		}
+		else
+		{
+			//alert(111);
+			var localdata =  localStorage.getItem("mingxingday");
+			var jsondata = JSON.parse(localdata);
+			$("#content1_1").html(jsondata.ul);
+			
+		}
+
+	}else
+	//明星周榜    
+	if(x==1 && n==2){
+		
+		if(localStorage.getItem("mingxingweek")==undefined|| localStorage.getItem("up_mingxingweek") == undefined||timestamp > parseInt(localStorage.getItem("up_mingxingweek"))+weekuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=mingxingweek&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("mingxingweek",strjson)
+				localStorage.setItem("up_mingxingweek",timestamp);
+				$("#content1_2").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("mingxingweek");
+			var jsondata = JSON.parse(localdata);
+			$("#content1_2").html(jsondata.ul);
+			
+		}
+		
+		
+		
+		
+		
+	}else
+	//明星月榜    
+	if(x==1 && n==3){
+
+		if(localStorage.getItem("mingxingmonth")==undefined|| localStorage.getItem("up_mingxingmonth") == undefined||timestamp > parseInt(localStorage.getItem("up_mingxingmonth"))+monuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=mingxingmonth&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("mingxingmonth",strjson);
+				localStorage.setItem("up_mingxingmonth",timestamp);
+				$("#content1_3").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("mingxingmonth");
+			var jsondata = JSON.parse(localdata);
+			$("#content1_3").html(jsondata.ul);
+			
+		}
+		
+	}else
+	//人气日榜    
+	if(x==2 && n==1){
+
+		if(1/*localStorage.getItem("renqiday")==undefined|| localStorage.getItem("up_renqiday") == undefined||timestamp > parseInt(localStorage.getItem("up_renqiday"))+dayuptime*/)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=renqiday&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("renqiday",strjson)
+				localStorage.setItem("up_renqiday",timestamp);
+				$("#content2_1").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("renqiday");
+			localStorage.setItem("up_renqiday",timestamp);
+			var jsondata = JSON.parse(localdata);
+			$("#content2_1").html(jsondata.ul);
+			
+		}
+	}else
+	//人气周榜    
+	if(x==2 && n==2){
+
+		if(localStorage.getItem("renqiweek")==undefined|| localStorage.getItem("up_renqiweek") == undefined||timestamp > parseInt(localStorage.getItem("up_renqiweek"))+weekuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=renqiweek&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("renqiweek",strjson)
+			localStorage.setItem("up_renqiweek",timestamp);
+				$("#content2_2").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("renqiweek");
+			var jsondata = JSON.parse(localdata);
+			$("#content2_2").html(jsondata.ul);
+			
+		}
+		
+		
+		
+	}else
+	//人气月榜    
+	if(x==2 && n==3){
+	
+		if(localStorage.getItem("renqimonth")==undefined|| localStorage.getItem("up_renqimonth") == undefined||timestamp > parseInt(localStorage.getItem("up_renqimonth"))+monuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=renqimonth&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("renqimonth",strjson)
+				localStorage.setItem("up_renqimonth",timestamp);
+				$("#content2_3").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("renqimonth");
+			var jsondata = JSON.parse(localdata);
+			$("#content2_3").html(jsondata.ul);
+			
+		}
+		
+	}else
+	//富豪日榜    
+	if(x==3 && n==1){
+
+		if(localStorage.getItem("fuhaoday")==undefined|| localStorage.getItem("up_fuhaoday") == undefined||timestamp > parseInt(localStorage.getItem("up_fuhaoday"))+dayuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=fuhaoday&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("fuhaoday",strjson);
+				localStorage.setItem("up_fuhaoday",timestamp);
+				$("#content3_1").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("fuhaoday");
+			var jsondata = JSON.parse(localdata);
+			$("#content3_1").html(jsondata.ul);
+			
+		}
+	}else
+	//富豪周榜    
+	if(x==3 && n==2){
+		
+		if(localStorage.getItem("fuhaoweek")==undefined|| localStorage.getItem("up_fuhaoweek") == undefined||timestamp > parseInt(localStorage.getItem("up_fuhaoweek"))+weekuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=fuhaoweek&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("fuhaoweek",strjson)
+				localStorage.setItem("up_fuhaoweek",timestamp);
+				$("#content3_1").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("fuhaoweek");
+			var jsondata = JSON.parse(localdata);
+			$("#content3_2").html(jsondata.ul);
+			
+		}
+
+	}else
+	//富豪月榜    
+	if(x==3 && n==3){
+	
+		if(localStorage.getItem("fuhaomonth")==undefined|| localStorage.getItem("up_fuhaomonth") == undefined||timestamp > parseInt(localStorage.getItem("up_fuhaomonth"))+monuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=fuhaomonth&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("fuhaomonth",strjson)
+				
+				localStorage.setItem("up_fuhaomonth",timestamp);
+				$("#content3_3").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("fuhaomonth");
+			var jsondata = JSON.parse(localdata);
+			$("#content3_3").html(jsondata.ul);
+			
+		}
+	}else
+	//礼物日榜    
+	if(x==4 && n==1){
+
+		if(localStorage.getItem("liwuday")==undefined|| localStorage.getItem("up_liwuday") == undefined||timestamp > parseInt(localStorage.getItem("up_liwuday"))+dayuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=liwuday&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("liwuday",strjson)
+				localStorage.setItem("up_liwuday",timestamp);
+				$("#content4_1").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("liwuday");
+			var jsondata = JSON.parse(localdata);
+			$("#content4_1").html(jsondata.ul);
+			
+		}
+	}else
+	//礼物周榜    
+	if(x==4 && n==2){
+
+		
+		if(localStorage.getItem("liwuweek")==undefined|| localStorage.getItem("up_liwuweek") == undefined||timestamp > parseInt(localStorage.getItem("up_liwuweek"))+weekuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=liwuweek&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("liwuweek",strjson)
+				localStorage.setItem("up_liwuweek",timestamp);
+				$("#content4_2").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("liwuweek");
+			var jsondata = JSON.parse(localdata);
+			$("#content4_2").html(jsondata.ul);
+			
+		}
+	}else
+	//礼物月榜    
+	if(x==4 && n==3){
+
+		if(localStorage.getItem("liwumonth")==undefined|| localStorage.getItem("up_liwumonth") == undefined||timestamp > parseInt(localStorage.getItem("up_liwumonth"))+monuptime)
+		{
+			$.getJSON(purl + '/index.php/Appapi/order?ajax=liwumonth&callback=?', function(json) {
+				var strjson = JSON.stringify(json);
+				////alert(strjson);
+				localStorage.setItem("liwumonth",strjson)
+				localStorage.setItem("up_liwumonth",timestamp);
+				$("#content4_3").html(json.ul);
+			});
+		}
+		else
+		{
+			var localdata =  localStorage.getItem("liwumonth");
+			var jsondata = JSON.parse(localdata);
+			$("#content4_3").html(jsondata.ul);
+			
+		}
+	}		
+}
+
+
+/*
+	2015.08.18
+	lvzhihui
+*/
+
+	function ordernaviblock() {
+		 
+		/*$(".ordernavilist").css("display","block");*/
+		$(".ordernavilist").toggle();
+	}
+
+	function getorderlists(num) {
+		//1富豪 2人气  3 明星 4礼物；
+		$(".ordernavilist").css("display", "none");
+		if (num == '1') {
+			$("#ordername").html("富豪排行榜");
+			$("#fuhaolists").css("display", "block");
+			$("#renqilists").css("display", "none");
+			$("#mingxinglists").css("display", "none");
+			$("#liwulists").css("display", "none");
+			turn2(1,4,3);
+
+		} else if (num == '2') {
+			$("#ordername").html("人气排行榜");
+			$("#fuhaolists").css("display", "none");
+			$("#renqilists").css("display", "block");
+			$("#mingxinglists").css("display", "none");
+			$("#liwulists").css("display", "none");
+			
+             turn2(1,4,2);
+		} else if (num == '3') {
+			$("#ordername").html("明星排行榜");
+			$("#fuhaolists").css("display", "none");
+			$("#renqilists").css("display", "none");
+			$("#mingxinglists").css("display", "block");
+			$("#liwulists").css("display", "none");
+	        turn2(1,4,1);
+		} else if (num == '4') {
+			$("#ordername").html("礼物排行榜");
+			$("#fuhaolists").css("display", "none");
+			$("#renqilists").css("display", "none");
+			$("#mingxinglists").css("display", "none");
+			$("#liwulists").css("display", "block");
+            turn2(1,4,4);
+		}
+	}
+
+	turn2(1,4,3); //默认
+</script>

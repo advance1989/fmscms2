@@ -1,0 +1,13 @@
+$(document).ready(function(){
+	if($("#shopkeyword")[0].value==""){
+		$("#shopkeyword")[0].value="搜索主播昵称，房间号";
+		$("#shopkeyword").focus(function(){
+			$("#shopkeyword")[0].value="";
+		});
+	}
+	if($("#shopkeyword")[0].value=="搜索主播昵称，房间号"){
+		$("#shopkeyword").focus(function(){
+			$("#shopkeyword")[0].value="";
+		});
+	}
+});

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="js/jquery1.42.min.js"></script>
+			<script type="text/javascript">
+	    var  pagename='register';
+ 
+	    </script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script language="JavaScript">
+		function plusReady() {
+				// Android处理返回键
+				plus.key.addEventListener('backbutton', function() {
+					mui.back();
+				}, false);
+				
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		
+		
+		</script>
+		<style type="text/css">
+			body{ font-family:"微软雅黑";}
+			#register {
+				margin-top: 5px;
+				background-color:#6f4411;
+				border: 0;
+				width: 300px; 
+				height: 45px;
+				font-size:20px;
+			}
+			.ll{ height:60px; padding-top:15px; border-bottom:1px solid #e8dfd5;}
+			.ll input{ height:35px; line-height:35px; background:none; color:#fff; outline:none;
+			}
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #fff;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #fff;
+}
+		</style>
+	</head>
+	<body style="width: 100%;" background="img/carpic/chat_group_background.png">
+			<div id="head" style="width:100%;height: 50px; font-family:'微软雅黑'; background:#FF8900; color: #FFFFFF;" ><div  style=" padding-top: 10px; margin-left: 10px; width: 400px;"><img onclick="out()" width="25px" src="img/carpic/back_default.png" style="float:left; margin-top:3px;"><span style=" font-size:20px;margin-left: 20px;
+ margin-top: 15px;">注册</span></div></div>
+	        <div style="width: 350px; margin: auto; margin-top: 70px;">
+	        <div class="ll">
+            <img src="img/carpic/icon_mine_pressed.png" style="float: left; width: 29px; margin-right: 5px"/><input  style="border: none;" id="username" placeholder="请输入账号"/>
+	        </div>
+            <div class="ll">
+	         <img src="img/carpic/register_password.png" style="float: left; width: 29px; margin-right: 5px;"/><input type="password" style="border: none;" id="password" placeholder="请输入密码"/>
+	        </div>
+            <div class="ll">
+	        <img src="img/carpic/register_password.png" style="float: left; width: 29px; margin-right: 5px;"/><input type="password" style="border: none;" id="confirm" placeholder="确认密码"/>
+	        </div>
+            <div class="ll">
+	        <img src="img/carpic/pic_verify_code.png"  style="float: left; width: 29px; margin-right: 5px;"/><input style="border: none; " id="codeinput" placeholder="验证码"/><img onclick="codeimg()" style="float: right;" width="100px" id="code" src="">
+	        </div>
+	        </div>
+	        <div style="margin:50px auto 0; width: 300px;"><button id="register" class="btn btn-default" type="button" onclick="register()"><font color="#FFFFFF">立即注册</font></button></div>
+	</body>
+</html>
+<script language="JavaScript">
+    var v=Math.random();
+    $("#code").attr('src',purl+'/index.php/Base/verify/v/'+v);
+	function register(){
+		
+		var username=$("#username").val();
+		var pass=$("#password").val();
+		var confirm=$("#confirm").val();
+		var code=$("#codeinput").val();
+		if(username==''||pass==''||confirm==''||code==''){
+			alert("请完整填写信息");
+			
+		}else{
+			if(pass!=confirm){
+				alert("两次密码输入不一致");
+				
+			}else{
+				
+				$.getJSON(purl+"/index.php/Api/register?callback=?&name="+username+"&password="+pass+"&confirm="+confirm+"&code="+code,
+				function(data){
+					
+					
+					if(data['data']=="注册成功"){
+						window.location.href="userinfo.html";
+					}else{
+						
+						alert(data['data']);
+					}
+					
+				}); 
+			}
+		}
+		
+	}
+   function out(){
+   	window.location.href="login.html";  
+   }
+   function codeimg(){
+		$("#code").attr('src',purl+'/index.php/Base/verify/v/'+v);
+	}
+</script>

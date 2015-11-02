@@ -1,0 +1,199 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/tabhost"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent" >
+
+
+
+    <TabWidget
+
+        android:id="@android:id/tabs"
+        android:background="@drawable/shenqu_pushnew_nowtime"
+        android:layout_width="match_parent"
+        android:layout_height="50dip" >
+
+    </TabWidget>
+
+
+
+    <FrameLayout
+
+        android:id="@android:id/tabcontent"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent" >
+
+
+
+        <LinearLayout
+
+            android:id="@+id/tab1"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+
+            android:orientation="vertical" >
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dip"
+                android:layout_height="185dip">
+                <GridView
+                    android:id="@+id/gridView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="2dp"
+                    android:horizontalSpacing="2dp"
+                    android:columnWidth="50dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    android:background="#F0F0F0"
+                    android:listSelector="@drawable/liwuxuanzhong_bg"
+                    android:drawSelectorOnTop="true"
+
+                    >
+
+                </GridView>
+            </LinearLayout>
+
+
+            <!-- <ImageView -->
+
+            <!-- android:layout_width="wrap_content" -->
+
+            <!-- android:layout_height="wrap_content" -->
+
+            <!-- android:layout_gravity="center" -->
+
+            <!-- android:src="@drawable/home" /> -->
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+
+            android:id="@+id/tab2"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+
+            android:orientation="vertical" >
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dip"
+                android:layout_height="185dip">
+                <GridView
+                    android:id="@+id/gridView_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="2dp"
+                    android:horizontalSpacing="2dp"
+                    android:columnWidth="50dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    android:background="#F0F0F0"
+                    android:listSelector="@drawable/liwuxuanzhong_bg"
+                    android:drawSelectorOnTop="true"
+
+                    >
+
+                </GridView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+
+            android:id="@+id/tab3"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+
+
+            android:orientation="vertical" >
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dip"
+                android:layout_height="185dip">
+                <GridView
+                    android:id="@+id/gridView_3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="2dp"
+                    android:horizontalSpacing="2dp"
+                    android:columnWidth="50dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    android:background="#F0F0F0"
+                    android:listSelector="@drawable/liwuxuanzhong_bg"
+                    android:drawSelectorOnTop="true"
+
+                    >
+
+                </GridView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="50dp"
+            android:inputType="number"
+            android:id="@+id/gifnum"
+            android:layout_marginLeft="190dp"
+            android:background="#EFEFEF"
+            android:gravity="center"
+            android:text="1"
+            android:layout_gravity="center"
+            android:layout_height="35dp" />
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:id="@+id/select_num"
+            android:layout_gravity="center"
+            android:background="@drawable/num_choose01_bg"/>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@xml/button"
+            android:id="@+id/gifzs"
+            android:layout_marginLeft="10dp"
+            android:text="赠送"/>
+
+    </LinearLayout>
+
+</TabHost>
+<!-- From: file:/Users/weilian/Desktop/code/fmscmsandroid1024%20vitamo/app/src/main/res/layout/giftlist.xml -->

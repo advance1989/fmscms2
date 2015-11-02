@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+		<script src="js/common.js"></script>
+	
+	    <link href="css/common.css" rel="stylesheet" />
+	     <script type="text/javascript" src="js/mui.min.js"></script>
+		<title></title>
+		<style type="text/css">
+		body{
+			background-color:#F4F4F4 ;
+		}
+		#att_list{
+			margin-top: 0px;
+		}
+		li{
+			background-color:#FFFFFF ;
+			height: 65px;
+			margin-bottom: 2px;
+			
+		}
+		#emceeinfo{
+			
+			width: 60%;
+			float: left;
+			margin-top:12px ;
+			margin-left:10px ;
+			font-family: "微软雅黑";
+			font-weight: initial;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="ordertop" id="ordertop" style="margin-bottom: 0px;">
+		<div class="fanhui"><a href="userinfo.html"><img src="./images/back_default.png" width="30px" height="30px"></a></div> 
+		<div id="ordertitle"><p style="color:white;">关注</p></div>
+		
+		
+	   </div>   
+	    <div id="att_list">
+			<ul id="att_list_ul">
+				
+		    </ul>
+		</div>
+	
+	</body>
+</html>
+<script language="JavaScript">
+	/*获取关注主播信息
+	 *
+	 */ 
+	
+	 $.getJSON(purl+"/index.php/Api/getattentioninfo?callback=?",function(data){  
+    	 for(var i in data){
+    	 	
+    	 	$("#att_list_ul").append('<li><img style="margin-top: 8px;margin-left: 5px; float: left;border-radius: 50%;" src="'+purl+'/passport/avatar.php?uid='+data[i]['ucuid']+'" width="50"/><div id="emceeinfo">'+data[i]['username']+'<br><font size="1" ><img src="img/carpic/icon_fensishu.png" width="15"/>'+data[i]['count']+'</font></div></li>');
+    	 }
+    	   
+     }); 
+  
+  	
+    
+</script>

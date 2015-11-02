@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>活动中心</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+	    var  pagename='activity'; 
+	    </script>
+	   
+		<script src="js/common.js"></script>
+
+		<link href="css/common.css" rel="stylesheet" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		
+	 
+
+	</head>
+
+	<body>
+		<div class="activitytop">
+			<div class="fanhui">
+				<a id="find.html" onclick="clicked(this.id);"><img src="./images/back_default.png" width="25px" height="25px"></a>
+			</div>
+			<div id="activitytitle">
+				<p id="centertitle">活动中心</p>
+			</div>
+			<div class="activitymore">
+				<a href="#" onclick="getnavilist();"><img src="./images/more.png" width="23px" height="23px"></div>
+			</a>
+		</div>
+
+		<div class="activityfenlei" id="navilist" style="display:none">
+			<ul id="fenleilistnavi">
+				<li><a href="#">11</a></li>
+				<li><a href="#">11</a></li>
+				<li><a href="#">11</a></li>
+				<li><a href="#">11</a></li>
+				<li><a href="#">11</a></li>
+			</ul>
+
+		</div>
+
+		<!-- 活动页 图片轮播-->
+		<div class="rollpic">
+			<div id="slideBox" class="slideBox">
+				<div class="hd">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="bd">
+					<ul id="activityrollpics">
+
+					</ul>
+				</div>
+
+				<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+				<a class="prev" href="javascript:void(0)"></a>
+				<a class="next" href="javascript:void(0)"></a>
+
+			</div>
+
+		</div>
+        
+        <div class="huodong" id="huodong">
+        	<dl>
+            	<dt><a href="#"><img src="http://zhibo.1198.com/Public/Uploads/1436879339.jpg"></a></dt>
+                <dd>
+                	<h2><a href="#">文章标题</a></h2>
+                    <p>我是介绍我是介绍我是介绍我是<br><a href="#" class="more">阅读全文</a></p>
+                </dd>
+            </dl>
+        </div>
+        
+        <div class="activitylists">
+			
+			<!--活动文章列表页-->
+			<div class="wenzhanglists" id="activitywenzhang">
+				<div class="wenzhang1">
+			         <div class="wenzhangimg">
+			         	<img src="" />
+			         </div> 
+			         <div class="wenzhanginfo">
+			             <p>文章标题     活动状态</p>
+			            <p>2015-07-11</p>
+			         </div>
+			       </div>
+
+			</div>
+		</div>
+		
+		<div class="bottomnavi">
+			<div id="footer">
+				<div class="gw fixed" style="margin:0 auto;">
+					<ul id="doc">
+						<li>
+							<a title="首页" id="index.html" onclick="clicked(this.id);">
+								<dl id="sy">
+									<dt class="sy"> </dt>
+									<dd>首页</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+							   <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+								<dl id="ph">
+									<dt class="ph"></dt>
+									<dd>排行</dd>
+								</dl>
+							</a>
+						</li>
+
+						
+						<li>
+							<a title="我" id="userinfo.html" onclick="clicked(this.id);">
+								<dl id="w">
+									<dt class="w"></dt>
+									<dd>我</dd>
+								</dl>
+							</a>
+						</li>
+                        <li>
+							<a title="更多" id="find.html" onclick="clicked(this.id);">
+								<dl id="fx">
+									<dt class="fx">  </dt>
+									<dd>更多</dd>
+								</dl>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+	</body>
+
+</html>
+<script>
+	$.getJSON(purl + '/index.php/Appapi/activityrollpic?ajax=rollpic&callback=?', function(json) {
+		$("#activityrollpics").html(json);
+		jQuery(".slideBox").slide({
+			mainCell: ".bd ul",
+			autoPlay: true
+		});
+	});
+	$.getJSON(purl + '/index.php/Appapi/activity?ajax=wenzhang&callback=?', function(json) {
+		$("#activitywenzhang").html(json);
+	});
+	$.getJSON(purl + '/index.php/Appapi/activity?ajax=activityfenlei&callback=?', function(json) {
+		$("#fenleilistnavi").html(json);
+	});
+	//活动
+	$.getJSON(purl + '/index.php/Appapi/activity?ajax=activityhuodong&callback=?', function(json) {
+		$("#huodong").html(json);
+	});
+	function fenlei(id, title) {
+		var fenleiid = id
+		$.ajax({
+			type: "post",
+			dataType: "jsonp",
+			url: purl + "/index.php/Appapi/activity/fenleiid/" + fenleiid + "/v/" + Math.random(),
+			success: function(data) {
+				$("#centertitle").html(title);
+				$("#navilist").hide();
+				$("#activitywenzhang").html(data);
+			},
+			complete: function(XMLHttpRequest, textStatus) {
+				//alert('complete');											
+			},
+			error: function() {
+				//inner.innerHTML='<font color=green>出错啦 稍后再试</font>';	
+			}
+		});
+	}
+
+	function getnavilist() {
+		$("#navilist").toggle();
+	}
+</script>

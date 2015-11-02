@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>充值</title>
+		<script src="js/common.js"></script>
+		
+		<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script>	-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		  	<script type="text/javascript">
+	    var  pagename='recharge';
+ 
+	    </script>
+		
+		
+		<link href="./css/common.css" rel="stylesheet" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<style type="text/css">
+		   .money_li{
+		   	border-bottom: 1px solid #F4F4F4;	
+		   	height: 40px;
+		   	margin-top: 10px;
+		   }
+		   .money_div{
+		  	 	margin: auto; 
+		   		width: 90%;
+		   		font-size: 16px;
+		  	 	color:#333;
+		  	 	height: 40px;
+		  	 	line-height: 40px;
+		  	 	font-weight: bold;
+		  	 	background: url(./images/jinbi.png) no-repeat 0 10px;
+		  	 	padding-left: 30px;
+		   }
+		   .money_div2{
+		  	 	float: right;
+		  	 	margin:5px 20px 0 0;
+		   		 height: 24px;
+		   		line-height: 24px;
+		   		font-size: 16px;
+		  	 	color:#FF5400;
+		  	 	font-weight: bold;
+		  	 	border-radius: 15px;
+		  	 	border:1px solid #eee;
+		  	 	width: 100px;
+		  	 	text-align: center;
+		   }		   
+		</style>
+	</head>
+	<body>
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a id="index.html" onclick="javascript:history.back();"><img src="./images/back_default.png" width="30px" height="30px"></a>
+			</div>
+			<div id="ordertitle">
+				<p id="recharge" style="color:white;">充值</p>
+			</div>
+			
+			
+				
+		</div>
+		<div style="margin-left: 2%; font-size:20px; color:#33;"><b>选择金额</b></div>
+		<div class="money">
+			<ul class="money_ul">
+				<li id="money_li" class="money_li"><div class="money_div2">￥500元</div> <div class="money_div">50,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥100元</div><div class="money_div">10,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥50元</div><div class="money_div">5,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥10元</div><div class="money_div">1,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥20元</div><div class="money_div">2,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥1,000元</div><div class="money_div">100,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥5,000元</div><div class="money_div">500,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥10,000元</div><div class="money_div">1000,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥20,000元</div><div class="money_div">2,000,000 秀币</div></li>
+				<li class="money_li"><div class="money_div2">￥50,000元</div><div class="money_div">5,000,000 秀币</div></li>
+			</ul>
+			
+		</div>
+		 
+	</body>
+</html>
+<script>
+	$(".money_li").bind('click',function(){
+		alert("正在开发");
+	})
+	
+</script>

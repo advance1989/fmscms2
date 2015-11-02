@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>申请创建家族</title>
+			<script src="js/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+		<script type="text/javascript">
+	    var  pagename='sqagentinfo';
+ 
+	    </script>
+		 <script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" />	
+		 
+		
+	</head>
+	<body style="background:#eee;">
+			<div class="activitytop">
+			<div class="fanhui"><a id="jiazu.html" onclick="clicked(this.id);" ><img src="./images/back_default.png" width="25px" height="25px"></a></div> 
+		<div id="activitytitle"><p id="centertitle">申请创建家族</p></div>
+		<!--<div class="activitymore"><a href="#" onclick="getnavilist();"><img src="./images/more.png" width="25px" height="25px"></div></a>-->
+		</div>
+		 
+	
+		<div class="sqinfo">
+			<form  enctype='multipart/form-data' method="post" action="" id="myform">
+		<div class="mui-input-row mui-input-group">
+			<label>家族名称：</label>
+			<input type="text" placeholder="输入家族名称" value="" name="familyname" id="familyname">
+		</div>
+		
+
+	<div class="mui-input-row">
+    	<label>家族介绍：</label>
+		<textarea  rows="6" cols="22"  placeholder="多行文本框" name="familyinfo" id="familyinfo"></textarea>
+	</div> 
+	
+	</form> 
+	
+				<button class="mui-btn mui-btn-primary" onclick="sqjiazu();">确认申请</button>
+			
+			
+		</div>
+		
+<div class="bottomnavi">
+	<div id="footer" >
+	<div class="gw fixed" style="margin:0 auto;">
+    <ul id="doc">
+        <li>
+		    <a title="首页" id="index.html" onclick="clicked(this.id);">
+                <dl id="sy">
+                     <dt class="sy"> </dt>
+                    <dd>首页</dd>
+                </dl> 
+            </a>
+	    </li>    
+	    <li>
+		   <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+                <dl id="ph">
+                   <dt class="ph"></dt>
+                    <dd>排行</dd>
+                </dl>
+            </a>
+	    </li>     
+		
+	    <li>
+		    <a title="我" id="userinfo.html" onclick="clicked(this.id);">
+                <dl id="w">
+                   <dt class="w"></dt>
+                  <dd>我</dd>
+                </dl>
+            </a>
+	    </li>    
+        
+	    <li>
+		    <a title="更多" id="find.html" onclick="clicked(this.id);">
+                <dl id="fx">
+                    <dt class="fx">  </dt>
+                <dd>更多</dd>
+                </dl>
+            </a>
+	    </li>     
+    </ul>
+    </div>	 
+		
+		
+	</body>
+</html>
+<script language="JavaScript">
+
+
+ function sqjiazu(){
+ 	 
+ 	 
+ 
+
+    // alert($("#myform").serialize());  
+       $.ajax({
+                 url:purl+"/index.php/Appapi/sqagentinfo?callback=?",
+                 data:$("#myform").serialize(),
+                 type:"POST",
+                 dataType: 'jsonp',
+                 success:function(data){//ajax返回的数据
+                 
+                 if(data.s==1){
+                 	alert("申请成功");
+                 }else{ 
+                 	alert("申请失败");
+                 }
+
+                
+            }});
+ 	
+ 	
+ 	
+   
+ 
+      }
+	
+	
+	
+	
+</script>

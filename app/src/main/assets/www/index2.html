@@ -1,0 +1,285 @@
+<!DOCTYPE html>   
+<html>
+ 
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Fmscms直播系统</title>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script> 	
+		<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script>-->
+		<script type="text/javascript">
+	    var  pagename='index';
+ 
+	   </script> 
+
+	    <script src="js/common.js"></script>
+      <link href="css/common.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script> 
+     
+ </head>
+    
+
+	<body > 
+		
+				<div class="ordertop" style="height:50px" id="ordertop">
+
+	
+
+		<div id="ordertitle" style="float:none;"><img src="./images/logoimg.png" style="float:left"widht="30px" height="30px"/><p style="color:white; float:left; margin-top:5px;"></p><a href="recharge.html"><img id="recharge_img" style="float: right; width: 50px; margin-right: 10px;" src="img/carpic/recharge_entrance_default.png"></a></div>
+
+	 
+	</div>  
+		<!-- 顶部导航 
+		<div class="topnavi">   
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="order.html">排行</a></li>
+				<li><a href="toolItem.html">商城</a></li>
+				<li><a href="jiazu.html">家族</a></li>
+				<li><a href="activity.html">活动</a></li> 
+				<li><a href="emceeno.html">靓号</a></li>
+				<li><a href="findemcees.html">发现 </a></li>
+				<li id="login_li"><a href="login.html">登陆 </a></li>
+			</ul>
+
+		</div> -->   
+		<!-- 中部图片轮播 -->
+		<div class="topsearch">
+		<div class="searchbox">
+			<input type="text" name="curroomnum"  placeholder="输入房间号，直达..." class="inputbox" id="inputbox">
+			<div class="searchimg">
+			<a href="#" onclick="searchroom();"><img src="./images/search.png" alt="搜索" width="25px" height="25px" style="margin-top: 2px;"/></a>
+		</div>  
+		</div>  
+			 
+		</div>
+		
+		
+		
+		<div class="rollpic">
+			<div id="slideBox" class="slideBox">
+				<div class="hd">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+
+					</ul>
+				</div>   
+				<div class="bd">
+					<ul id="rollpics">
+
+		
+					</ul>
+				</div>
+
+				<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+				<a class="prev" href="javascript:void(0)"></a>
+				<a class="next" href="javascript:void(0)"></a>
+
+			</div>
+
+		</div>
+		
+<ul class="tuijiannavi" id="tuijiannavi">
+
+</ul>	
+
+</div>
+<div class="tuijian"  >
+
+
+ 
+
+  <ul class="tuijianlists" id="tuijianemcee">
+   
+  
+  </ul>
+
+</div>
+</div> 
+
+<!--底部导航-->
+<div class="bottomnavi">
+	<div id="footer" >
+	<div class="gw fixed" style="margin:0 auto;">
+    <ul id="doc">
+        <li> 
+		    <a title="首页" href="index.html" class="">
+                <dl id="sy">
+                     <dt class="sy" style="
+ background:url(./images/main_tab1_pressed.png) no-repeat top center;"> </dt>
+                    <dd class="" style="color:#FF8900;">首页</dd>
+                </dl>
+            </a>
+	    </li>    
+
+	    <li>
+
+		    <a title="排行"  href="order.html"" >
+
+                <dl id="ph">
+                    <dt class="ph"></dt>
+                   <dd>排行</dd>
+                </dl>
+            </a>
+	    </li>     
+	    <li href="#" onclick="islogin()">
+		    <a title="我"  class="">
+                <dl id="w">
+                    <dt class="w"></dt>
+                    <dd>我</dd>
+                </dl>
+            </a>
+	    </li>  
+        <li>
+		    <a title="更多"  href="find.html">
+
+                <dl id="fx">
+                    <dt class="fx">  </dt>
+                   <dd>更多</dd>
+                </dl>
+            </a>
+	    </li>      
+    </ul>
+    </div>	
+</div>
+
+</div>
+	</body>
+ 
+</html>  
+
+<script> 
+
+$.getJSON(purl+'/index.php/Appapi/rollpic?ajax=rollpic&callback=?',function(json){
+		$("#rollpics").html(json);  
+			jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
+		  
+});  
+
+	
+$.getJSON(purl+'/index.php/Appapi/tuijianemcee?ajax=tuijian&callback=?',function(json){
+ 	    
+		$("#tuijianemcee").html(json);  
+			
+		  
+});
+$.getJSON(purl+'/index.php/Appapi/tuijiannavi?ajax=tuijiannavi&callback=?',function(json){
+ 	    
+		$("#tuijiannavi").html(json);  
+			 
+		  
+});
+
+
+function getlists(flid){  
+	var fenleiid=flid;
+
+	$(".navi_off").removeClass("navi_on");
+	$("#navi"+fenleiid).addClass("navi_on");
+	
+
+//ajax请求数据
+$.ajax({
+
+				type: "post",
+				dataType: "jsonp",
+				url: purl+"/index.php/Appapi/feileiemcee/fenleiid/"+fenleiid+"/v/"+Math.random(),
+				
+				success: function(data){
+				
+					$("#tuijianemcee").html(data);
+					
+				},
+				complete: function(XMLHttpRequest, textStatus){
+					//alert('complete');											
+				},
+				error: function(){					
+					//inner.innerHTML='<font color=green>出错啦 稍后再试</font>';	
+				}
+			});	
+	
+	
+	
+}
+//weipeng
+function islogin(){
+	$.ajax({
+				url:purl+"/index.php/Api/getuserid",
+				type: "get",
+				dataType: "jsonp",
+				success: function(data, textStatus) {
+				
+					if(data=='未登录'){
+						
+						window.location.href="login.html";
+					} else{
+						window.location.href="userinfo.html";
+					}
+				
+				}
+				});
+}
+  function  searchroom(){
+  	var roomnum=$("#inputbox").val();
+  	$.ajax({
+
+				type: "post",
+				dataType: "jsonp",
+				url: purl+"/index.php/Appapi/searchroom/roomnum/"+roomnum,
+				
+				success: function(data){
+				 if(data=='0'){
+				 	alert("您输入的房间号不存在，请重新输入")
+				 }else{
+				 	window.location.href="show.html?roomid="+roomnum;
+				 }
+				
+					   
+				},
+				complete: function(XMLHttpRequest, textStatus){
+					//alert('complete');											
+				},
+				error: function(){					
+					//inner.innerHTML='<font color=green>出错啦 稍后再试</font>';	
+				}
+			});	
+  }
+
+//初始化socket
+$.ajax({
+	type:"get",
+	url:purl+"/index.php/Api/update_server_info/act/nodejs",
+	async:true,
+	dataType:"jsonp",
+	success:function(data){
+		localStorage.setItem("nodejs",data.nodejs);
+
+	}
+});
+ 
+		    
+		   
+			//获取rtmp服务器
+			$.ajax({  
+				type:"get",
+				url:purl+"/index.php/Api/update_server_info/act/fms",   
+				async:true,
+				success:function(data){
+					var data=eval(data);
+					
+					localStorage.setItem("cdn",data['fmsstream']);
+					
+					
+				}
+			});
+	 
+		
+</script>
+
+
+
+

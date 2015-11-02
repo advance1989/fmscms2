@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设置</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="js/jquery1.42.min.js"></script>
+			<script type="text/javascript">
+	    var  pagename='setting';
+ 
+	    </script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script language="JavaScript">
+			 //返回代码
+			function plusReady() {
+				
+				
+				// Android处理返回键
+				plus.key.addEventListener('backbutton', function() {
+					mui.back();
+				}, false);
+			
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			#baocun {
+				  margin-top: 5px;
+  background-color: #6f4411;
+  border: 0;
+  width: 300px;
+  height: 45px;
+  font-size:20px;
+			}
+		</style>
+	</head>
+
+	<body style="background:#eee;">
+		<div id="head" style="width:100%;height: 50px; font-family:'微软雅黑'; background:#FF8900; color: #FFFFFF;" >
+			<div  style=" padding-top: 10px; margin-left: 30px; width: 400px;"><img onclick="out()" width="30px" src="img/carpic/back_default.png"><span style="margin-left: 30%;
+ margin-top: 15px;">设置</span></div>
+		</div>
+		<div id="select" style="font-family:'微软雅黑'; ">
+			<ul class="list-group">
+				<li style="color: #000000;  margin-top: 5px;" onclick="getpass()" class="list-group-item" id="name">找回密码</li>
+
+				<li style="color: #000000; margin-top: 5px;" onclick="editinfo(this)" class="list-group-item" id="birthday">关于软件</li>
+				<li style="color: #000000; margin-top: 5px;" onclick="editinfo(this)" class="list-group-item" id="interest">绑定手机号</li>
+
+			</ul>
+			<div style="margin: auto; width: 300px;">
+				<button id="baocun" class="btn btn-default" type="button" onclick="loginout()"><font color="#FFFFFF">退出登录</font></button>
+			</div>
+		</div>
+		<div id="getpassdiv" style=" font-family:'微软雅黑';background-color: #FAFAFA; display: none; ">
+			<div style='background-color: #F7F7F7;' id='editdiv'>
+				<button onclick="quxiao()" id='n' style='border:none; background-color: #d8d8d8; width: 50%; height: 60px;float:left;'>取消</button>
+				<button id='y' style='border:none; background-color: #333; width: 50%; height: 60px; color:#fff; float: right;'>确定</button>
+				<div style='margin: auto; width: 400px;'>
+					<input style=' padding:0px 5px; border:1px solid #d8d8d8; width: 400px; margin-top: 40px;  height: 50px;' type='text' id='inputtext' placeholder="请输入需要找回的账号" />
+				</div>
+				<div style='margin: auto; width: 400px;'>
+					<input style='padding:0px 5px; width: 400px; margin-top: 40px;  height: 50px;  border:1px solid #d8d8d8; ' type='text' id='inputtext' placeholder="请输入邮箱地址" />
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script language="JavaScript">
+	var height = $(document).height();
+	$("#select").css('height', height);
+	//退出登录
+	function loginout() {
+		$.getJSON(purl + "/index.php/Api/loginout?callback=?", function(data) {
+			
+		    navigator.intent.logout("-1");
+			alert(data['data']);
+			window.location.href = 'index.html';
+		});
+	}
+
+	function quxiao() {
+			$("body").html(body);
+		}
+		//找回密码
+
+	function getpass() {
+		body = $("body").html();
+		var height = $(document).height();
+		$("#getpassdiv").css('height', height);
+		$('#head').html('<div   style="padding-top: 10px; margin-left: 30px; width: 400px;"><img onclick="out1()" width="30px" src="img/carpic/back_default.png"><span style="margin-left: 30%; margin-top: 15px;">找回密码</span</div>');
+		$('#select').hide();
+		$("#getpassdiv").toggle();
+	}
+
+	function quxiao() {
+		$("#select").css('height', height);
+		$('#head').html('<div style="padding-top: 10px; margin-left: 30px; width: 400px;"><img width="30px" src="img/carpic/back_default.png"><span style="margin-left: 30%; margin-top: 15px;">设置</span></div>');
+		
+		$('#getpassdiv').hide();
+		$("#select").toggle();
+	}
+
+	function out() {
+		window.location.href = "userinfo.html";
+	}
+
+	function out1() {
+		$("body").html(body);
+	}
+</script>

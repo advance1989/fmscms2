@@ -1,0 +1,324 @@
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+        <script type="text/javascript" src="js/jquery.1.11.min.js"></script>
+		<link href="css/common.css" rel="stylesheet" /> 
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script type="text/javascript">
+	    var  pagename='userinfo';  
+	  
+	    </script>
+		<script src="js/common.js"></script>
+        <script type="text/javascript" src="js/mui.min.js"></script>
+
+		<script src="js/cookie.js" ></script>
+	 
+	</head>
+	<style type="text/css">
+		body{ font-family:"微软雅黑";}
+		li {
+			height: 50px;
+			color: #FFFFFF;
+			line-height:50px;
+			height:50px;
+			overflow:hidden;
+		}
+		#info {
+			width: 150px;
+			margin: auto;
+			text-align:center;
+		} 
+		a {
+			color: #333;
+		}
+		#chongzhi {
+			background-color:#65383b;
+			width: 100%; 
+			border-style: none;
+			margin: auto;
+			color:#fff;
+			font-size:20px;
+		}
+		#select { 
+			margin-top: 20px;
+			margin-bottom:60px;
+		}
+		#userinfo{
+			display: none;
+			background-color: #F7F7F7; 
+			padding-top: 10px; 
+			margin-top: 10px;
+			border-top:1px solid #e4e4e4;
+		
+		}
+		#login {
+				  background-color: #FF8900;
+  width: 100%;
+  border-style: none;
+  margin: auto;
+  color: #fff;
+  font-size: 20px;
+}
+	     #nickname,#coinbalance{
+	     	color: #333;
+	     }
+		 .list-group-item{ color:#333;}
+	</style>
+
+	<body  style="width: 100%; background:#eee;">
+		<div class="ordertop" id="ordertop">
+		<div class="fanhui"><a href="index.html"><img src="./images/back_default.png" width="25px" height="25px"></a></div> 
+		<div id="ordertitle"><p style="color:white;">个人中心</p></div>
+		<!--<div class="ordernavi"><a href="#"  onclick="ordernaviblock();"><img src="./images/mine_avatar_album_background.png" width="20px" height="20px"></div>-->
+	</div>  
+
+		     
+		   
+				<div id="info">
+					
+				<img id="headimg" style="width: 80px; height: 80px;border-radius: 50%;margin-top: 10px;margin-bottom: 10px; border:5px solid #fff;">
+					<div id="nickname"></div>
+					<div id="coinbalance" style="width: 150px;height:30px;"></div>
+
+				</div>
+				<div style="margin:10px auto 30px; width: 80%;"> 
+					<button class="btn btn-default" id="chongzhi">充值</button>
+				</div>
+				
+				
+				<script language="JavaScript">
+					$("#chongzhi").bind('click',function(){
+						window.location.href="recharge.html";
+					});
+					
+				</script>
+				<div id="select"> 
+					<ul class="list-group">
+						<li class="list-group-item" onclick="window.location.href='attention.html'">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>
+							<a id="guanzhu"></a>
+						</li>
+						<li onclick="fansi()" class="list-group-item">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>
+							<a id="fensi"></a>
+						</li>
+						<li onclick="daoju()" class="list-group-item">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>道具
+						</li>
+						<li class="list-group-item">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span><a href="gongxianbang.html">贡献榜</a>
+						</li>
+						<li onclick="record()" class="list-group-item">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>历史记录
+						</li>
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item" onclick="edit()">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>编辑资料
+						</li>
+						<li class="list-group-item" onclick="setting()">
+							<span style="float: right;"><img src="img/carpic/main_anchor_indicator_more.png"></span>设置
+						</li>
+
+					</ul>
+
+					<input type="hidden" id="sexinput" />
+				</div>
+			
+		<div id="userinfo">
+			<ul class="list-group">
+				<li style="color:#000;padding-left:10px">昵称：</li>
+				<li style="height: 50px; color: #000000;  margin-top: 20px;" onclick="editinfo(this)" class="list-group-item" id="name">aaaaaaaaa</li>
+			<li style="color:#000;padding-left:10px">性别：</li>
+				<li style="height: 50px; color: #000000; background:#ccc; border-top:1px solid #e4e4e4;  border-bottom:1px solid #e4e4e4; margin-top: 20px;">
+					<button id="b" onclick="sex('b')" style="background-color: #FFFFFF; width:50%; float:left; border:none;">男</button>
+					<button onclick="sex('g')" id="g" style=" background-color: #FFFFFF;  width:50%; float: right; border:none;">女</button>
+				</li>
+
+				<li style="color:#000;padding-left:10px">生日：</li>
+				<li style="height: 50px; color: #000000; margin-top: 10px;" onclick="editinfo(this)" class="list-group-item" id="birthday">1992-01-01</li>
+				<li style="color:#000;padding-left:10px">兴趣：</li>
+				<li style="height: 50px; color: #000000; margin-top: 10px;" onclick="editinfo(this)" class="list-group-item" id="interest">主人什么都没写</li>
+
+			</ul>
+			<div style="margin: auto; width: 300px;">
+				<button id="login" class="btn btn-default" type="button" onclick="ok()"><font color="#FFFFFF">保存修改</font></button>
+			</div>
+		</div>
+<div class="bottomnavi">
+	<div id="footer" >
+	<div class="gw fixed" style="margin:0 auto;">
+    <ul id="doc">
+        <li>
+		    <a title="首页" id="index.html" onclick="clicked(this.id);">
+                <dl id="sy">
+                     <dt class="sy"> </dt>
+                    <dd>首页</dd>
+                </dl>
+            </a>
+	    </li>    
+	    <li>
+		    <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+                <dl id="ph">
+                    <dt class="ph"></dt>
+                    <dd>排行</dd>
+                </dl>
+            </a>
+	    </li>     	       
+	    <li> 
+		    <a title="我" href="#" class="">
+                <dl id="w">
+                    <dt class="w" style="
+ background:url(./images/main_tab4_pressed.png) no-repeat top center;"></dt>
+                    <dd style="color:#ff8900;">我</dd>
+                </dl>
+            </a>
+	    </li> 
+        <li>
+		    <a title="更多" id="find.html" onclick="clicked(this.id);">
+                <dl id="fx">
+                    <dt class="fx">  </dt>
+                    <dd>更多</dd>
+                </dl>
+            </a>
+	    </li>     
+    </ul>  
+    </div>
+    </div>
+
+	</body>
+
+</html>
+<script language="JavaScript">
+	function setting() {
+		window.location.href = "setting.html";
+	}
+
+	function sex(sex) {
+		if (sex == 'g') {
+			$("#sexinput").val('2');
+			$("#b").css("background-color", "#fff");
+			$("#b").css("border", "none");
+			$("#g").css("background-color", "#dbdbdb");
+			$("#g").css("color", "#000");
+			$("#b").css("color", "#333");
+		} else {
+			$("#sexinput").val('1');
+			$("#b").css("background-color", "#dbdbdb");
+			$("#b").css("color", "#000");
+			$("#g").css("color", "#333");
+			$("#g").css("background-color", "#fff");
+			$("#g").css("border", "none");
+			$("#b").css("border", "#E0E0E0");
+		}
+	}
+	var height = $(document).height();
+	$("#userinfo").css("height", height + "px");
+	$.getJSON(purl + "/index.php/Api/getuserinfo?callback=?",
+		function(data) {
+
+			localStorage.u_roomid = data['curroomnum'];
+			localStorage.nickname = data['nickname'];
+			
+			
+			$.cookie("u_roomid",data['curroomnum']);
+			$.cookie("nickname",data['nickname']);
+			$("#nickname").html(data['nickname']);
+			var headimg = purl + "/passport/avatar.php?uid="+data['id']+"&size=small";
+			$("#headimg").attr('src', headimg);
+			
+			if (data['coinbalance'] == '') {
+				$("#coinbalance").html("<img onclick='uploadhead()' width='20' src='img/carpic/icon_coin.png'/>余额:0");
+			} else {
+				$("#coinbalance").html("<img onclick='uploadhead()' width='20' src='img/carpic/icon_coin.png'/>余额:" + data['coinbalance']);
+			}
+		});
+	//获取粉丝数量和关注数量
+	$.getJSON(purl + "/index.php/Api/getuserinfo2?callback=?", function(data) {		
+			$("#fensi").html("粉丝 " + data['data']['fensi']);
+			$("#guanzhu").html("关注 " + data['data']['guanzhu']);
+
+	});
+	//修改资料
+	function edit() {
+			pagename = "edit";
+			$("#userinfo").toggle();
+			$("#select").toggle();
+			$.getJSON(purl + "/index.php/Api/getuserinfo?callback=?",
+				function(data) {
+					if (data['sex'] == 1) {
+						sex('b');
+					} else {
+						sex('g');  
+					}
+					$("#name").html(data.nickname);
+					
+					if (data['interest'] != null){
+						$("#interest").html(data['interest']);
+					} else {
+						$("#interest").html("您还没有设置个性签名哦");
+					}
+					if (data['birthday'] != null) {
+						$("#birthday").html(data['birthday']);
+					} else {
+						$("#birthday").html("快填写上自己的生日吧~");
+					}
+				});  
+		}
+		//修改资料编辑页面 
+
+	function editinfo(_this) {
+			body = $("body").html();
+			$('body').html("<div style='background-color: #F7F7F7;' id='editdiv' ><button id='n' onclick='quxiao()' style='border:none; background-color: #FFFFFF; width: 50%; height: 60px;'>取消</button><button id='y' style='border:none; background-color: #FFFFFF; width: 50%; height: 60px; float: right; background:#FF8900; color:#fff;'>确定</button><div style='margin: auto; width: 100%;'><input style='width: 100%; padding:0 2%; margin-top: 40px;  height: 50px; border-top:1px solid #e4e4e4; border-bottom:1px solid #e4e4e4;' type='text' id='inputtext'/></div></div>");
+			$('#editdiv').css('height', $(document).height());
+			var text = $(_this).text();
+			var id = $(_this).attr('id');
+			$("#inputtext").val(text);
+			$("#y").bind('click', function() {
+				var inputtext = $("#inputtext").val();
+				$("body").html(body);
+				$("#" + id).html(inputtext);
+			});
+		}
+		//保存
+
+	function ok() {
+		var name = $("#name").html();
+		var interest = $("#interest").html();
+		var birthday = $("#birthday").html();
+		var sex;
+		if ($("#sexinput").val() == '1') {
+			sex = '1';
+		} else {
+			sex = '2';
+		}
+		$.getJSON(purl + "/index.php/Api/edituserinfo?callback=?&name=" + name + "&interest=" + interest + "&birthday=" + birthday + "&sex=" + sex,
+			function(data) {
+				alert(data['data']);
+			});
+	}
+
+	function quxiao() {
+		$("body").html(body);
+	}
+
+	function fansi() {
+		window.location.href = 'fans.html';
+	}
+	function daoju(){
+		window.location.href = 'toolinuse.html';
+	}
+	function uploadhead(){
+		
+		
+	}
+	function record(){
+		window.location.href = 'record.html';
+		
+	}
+
+</script>

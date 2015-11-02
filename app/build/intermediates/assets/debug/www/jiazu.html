@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>家族</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery1.42.min.js"></script> 
+		<script type="text/javascript">
+	    var  pagename='jiazu'; 
+	    </script>
+		 <script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script language="JavaScript">
+		function plusReady() {
+				// Android处理返回键
+				plus.key.addEventListener('backbutton', function() {
+					mui.back();
+				}, false);
+				
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		
+		
+		</script>
+	</head>
+	<body>
+			<div class="activitytop">
+			<div class="fanhui"><a href="find.html" target="frame1"><img src="./images/back_default.png" width="25px" height="25px"></a></div> 
+		<div id="activitytitle"><p id="centertitle">最新组建家族</p></div>
+		<div class="activitymore"><a href="#" onclick="getnavilist();"><img src="./images/more.png" width="23px" height="23px"></div></a>
+		</div>
+		 
+		 <div class="activityfenlei"  id="navilist" style="display:none">
+		 	<ul id="fenleilistnavi">
+		 		<li><a href="#" onclick="getjiazulist(1,'最新创建');">最新创建</a></li>
+		 		<li><a href="#" onclick="getjiazulist(2,'家族直播');">家族直播</a></li>
+		 		<li><a href="#" onclick="getjiazulist(3,'热门家族');">热门家族</a></li>
+		 		<li><a href="#"  id="sqagent">申请创建</a></li>
+		 	   
+		 	</ul>
+		 	     
+		 	
+		 </div>  
+	
+		<div class="newjiazu">
+	<div id="xinjianjiazu" style="display:block">	
+		
+		<ul class="" id="newjiazu" >
+	
+
+         </ul>  
+
+	</div>	
+	<div id="zhibojiazu" style="display:none">
+	<!--<h4>家族直播 </h4>-->
+		<ul class="" id="zbjiazu">
+	
+
+</ul>      
+   </div> 
+   <div id="remenjiazu" style="display:none">
+<!--<h4>热门家族  </h4> -->
+		<ul class="" id="hotjiazu">
+
+  
+</ul> 
+</div>
+	</div>	
+	
+		
+		<!--底部导航-->
+<div class="bottomnavi">
+	<div id="footer" >
+	<div class="gw fixed" style="margin:0 auto;">
+    <ul id="doc">
+        <li>
+		    <a title="首页" href="index.html" class="">
+                <dl id="sy">
+                     <dt class="sy"> </dt>
+                    <dd>首页</dd>
+                </dl>
+            </a>
+	    </li>    
+	    <li>
+         <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+                <dl id="ph">
+                   <dt class="ph"></dt>
+                    <dd>排行</dd>
+                </dl>
+            </a>
+	    </li>     
+		 
+	    <li>
+		    <a title="我" href="userinfo.html" class="">
+                <dl id="w">
+                    <dt class="w"></dt>
+                    <dd>我</dd>
+                </dl>
+            </a>
+	    </li>  
+        
+	    <li>
+		    <a title="更多" href="find.html" class="">
+                <dl id="fx">
+                    <dt class="fx">  </dt>
+                    <dd>更多</dd></a>
+                </dl>
+            </a>
+	    </li>      
+    </ul>
+  </div>
+  
+  <div style="height:1000px;"> 
+		
+	</div>
+	</body>
+</html>
+<script>
+	//新建家族 
+ $.getJSON(purl+'/index.php/Appapi/jiazu?ajax=newjiazu&callback=?',function(json){
+    
+		$("#newjiazu").html(json.newjiazu);
+		
+	}); 
+//直播家族	
+$.getJSON(purl+'/index.php/Appapi/jiazu?ajax=zbjiazu&callback=?',function(json){
+    
+		$("#zbjiazu").html(json.zbjiazu);
+		
+	});
+//热门家族	
+$.getJSON(purl+'/index.php/Appapi/jiazu?ajax=hotjiazu&callback=?',function(json){
+     
+		$("#hotjiazu").html(json.hotjiazu);
+		
+	});
+//完成申请创建家族的功能  判断用户信息 如果符合进行跳转 
+   
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  }
+return ""
+}
+
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date()
+exdate.setDate(exdate.getDate()+expiredays)
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}		
+
+
+$("#sqagent").click(function(){
+ 
+     $.getJSON(purl+'/index.php/Appapi/sqagent?ajax=zhuangtai&callback=?',function(json){
+     
+        if(json.zhuangtai==1){
+        	alert("您尚未登录，请先登录!"); 
+        	
+        	var reurl=window.location.href;
+								 
+			setCookie('reurl',reurl);								
+			location.href="login.html";
+        	
+        	   
+        }
+       if(json.zhuangtai==2){
+        	alert("您已经创建过家族!");  
+        	   
+        }
+        if(json.zhuangtai==3){
+        	alert("您的申请审核中，请等待审核！");   
+        	  
+        } 
+        
+           if(json.zhuangtai==4){
+        	alert("您的申请未通过，请再次申请！"); 
+        	window.location.href="sqagentinfo.html";
+        	  return false;
+        }
+           
+              if(json.zhuangtai==0){
+        	alert("页面即将跳转！"); 
+        	window.location.href="sqagentinfo.html";
+        	  return false;
+        }
+        
+	});
+		
+		
+	
+	
+});	
+	 function getnavilist(){
+ 
+  	$("#navilist").toggle();
+  	
+  }
+	 
+function getjiazulist(num,title){
+	
+	$("#navilist").hide();
+	$("#centertitle").html(title);
+	//1.新建家族  2.家族直播 3.热门家族
+	if(num=='1'){
+		$("#xinjianjiazu").css("display","block");
+		$("#zhibojiazu").css("display","none");
+		$("#remenjiazu").css("display","none");
+	}else if(num=='2'){
+		$("#xinjianjiazu").css("display","none");
+		$("#zhibojiazu").css("display","block");
+		$("#remenjiazu").css("display","none");
+		
+	}else if(num=='3'){
+		$("#xinjianjiazu").css("display","none");
+		$("#zhibojiazu").css("display","none");
+		$("#remenjiazu").css("display","block");
+		
+	}
+	
+	
+}
+	 
+	 
+</script>

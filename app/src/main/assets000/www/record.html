@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+		<script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	    <link href="css/common.css" rel="stylesheet" />
+		<title></title>
+	</head>
+	<body>
+		<div class="ordertop" id="ordertop">
+		<div class="fanhui"><a href="userinfo.html"><img src="./images/back_default.png" width="30px" height="30px"></a></div> 
+		<div id="ordertitle"><p style="color:white;">观看历史</p></div>
+		<!--<div class="ordernavi"><a href="#"  onclick="ordernaviblock();"><img src="./images/mine_avatar_album_background.png" width="20px" height="20px"></div>-->
+	</div>  
+	
+	
+	<div id="select" style="background-color: #FAFAFA; ">
+			<ul id="record" class="list-group">
+
+				
+			
+				 
+			</ul>
+         
+		</div> 
+
+        
+
+
+
+	<div class="bottomnavi">
+		<div id="footer" >
+		<div class="gw fixed" style="margin:0 auto;">
+	    <ul id="doc">
+	        <li>
+			    <a title="首页" id="index.html" onclick="clicked(this.id);">
+	                <dl id="sy">
+	                     <dt class="sy"> </dt>
+	                    <dd>首页</dd>
+	                </dl>
+	            </a>
+		    </li>    
+		    <li>
+			    <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+	                <dl id="ph">
+	                    <dt class="ph"></dt>
+	                    <dd>排行</dd>
+	                </dl>
+	            </a>
+		    </li>     
+			 
+		    <li> 
+			    <a title="我" href="#" class="">
+	                <dl id="w">
+	                    <dt class="w" style="background:url(./images/main_tab4_pressed.png) no-repeat top center;"></dt>
+	                    <dd style="color:#FF8900;">我</dd>
+	                </dl>
+	            </a>
+		    </li>   
+            
+		    <li>
+			    <a title="更多" id="find.html" onclick="clicked(this.id);">
+	                <dl id="fx">
+	                    <dt class="fx">  </dt>
+	                    <dd>更多</dd>
+	                </dl>
+	            </a>
+		    </li>     
+	    </ul>  
+    </div>
+	</body>
+</html>
+<script language="JavaScript">
+    if(localStorage.record!=undefined){
+    	var record=localStorage.record.split(",");
+    	for(var i=0;i<record.length-1;i++){
+    		
+    		$("#record").append('<li style="height: 57px; color: #000000; margin-top: 5px;margin-left: 5px;line-height: 57px;" onclick="window.location.href=\'show.html?roomid='+record[i]+'\'" class="list-group-item" id="birthday"><b>'+record[i]+'</b></li>');
+    		
+    	}
+    }
+	
+</script>

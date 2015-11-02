@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>靓号</title>
+		<link rel="stylesheet" href="./css/commonapp.css" type="text/css" />
+		<link href="css/common.css" rel="stylesheet" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+	    var  pagename='emceeno'; 
+	    </script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--	<script language="javascript" src="js/jquery.min.js"></script>	-->
+
+		<script language="javascript" src="js/mymanage.js"></script>
+
+		 
+
+	</head>
+
+	<body>
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a id="find.html" onclick="clicked(this.id);"><img src="./images/back_default.png" width="25px" height="25px"></a>
+			</div>
+			<div id="ordertitle">
+				<p style="color:white;">靓号</p>
+			</div>
+			<!--<div class="ordernavi"><a href="#"  onclick="ordernaviblock();"><img src="./images/mine_avatar_album_background.png" width="20px" height="20px"></div>-->
+		</div>
+		<div class="topsearch">
+			<div class="searchbox">
+				<input type="text" placeholder="搜靓号，请输入4-8位数字..." class="inputbox" id="goognums">
+				<!--<input type="text" id="goognums" class="gn-text" pro-msg="请输入4-8位数字..."  value="请输入4-8位数字..." />-->
+				<div class="searchimg">
+					<a href="#" onclick="checknums();"><img src="./images/search.png" alt="搜索" width="25px" height="25px;" /></a>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="wrap">
+
+			<div class="goodnum">
+
+				<!--	<div class="gn-search">
+
+			<div class="gns-v">
+
+				<input type="text" id="goognums" class="gn-text" pro-msg="请输入4-8位数字..."  value="请输入4-8位数字..." />
+
+				<span class="gn_btn" onClick="checknums();"><cite>搜靓号</cite></span>
+
+                
+
+			</div>
+
+		</div>-->
+
+				<div class="sell_gn">
+
+					<h2 class="rtitle">官方正在销售的靓号</h2>
+
+					<div class="gn_item">
+
+						<div class="gni-t">
+
+							<a href="" onclick="changeNums(4)" class="change-gn" title="换一批">换一批</a>
+							<h3>4位靓号</h3>
+
+						</div>
+
+						<div class="gni-v" id="Num_area4">
+
+						</div>
+
+					</div>
+
+					<div class="gn_item">
+
+						<div class="gni-t">
+
+							<a href="" onclick="changeNums(5)" class="change-gn" title="换一批">换一批</a>
+							<h3>5位靓号</h3>
+
+						</div>
+
+						<div class="gni-v" id="Num_area5">
+
+						</div>
+
+					</div>
+
+					<div class="gn_item">
+
+						<div class="gni-t">
+
+							<a href="" onclick="changeNums(6)" class="change-gn" title="换一批">换一批</a>
+							<h3>6位靓号</h3>
+
+						</div>
+
+						<div class="gni-v" id="Num_area6">
+
+						</div>
+
+					</div>
+
+					<div class="gn_item">
+
+						<div class="gni-t">
+
+							<a href="" onclick="changeNums(7)" class="change-gn" title="换一批">换一批</a>
+							<h3>7位靓号</h3>
+
+						</div>
+
+						<div class="gni-v" id="Num_area7">
+
+						</div>
+
+					</div>
+
+					<div class="gn_item">
+
+						<div class="gni-t">
+
+							<a href="" onclick="changeNums(8)" class="change-gn" title="换一批">换一批</a>
+							<h3>8位靓号</h3>
+
+						</div>
+
+						<div class="gni-v" id="Num_area8">
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="gn-qua">
+
+				<div class="model-h">
+
+					<h2 class="rtitle">常见问题</h2>
+
+					<div class="help_des">
+
+						<dl>
+
+							<dt>什么是靓号？</dt>
+
+							<dd>
+
+								<p>
+
+									靓号是秀场房号中珍贵稀有的号码，精品靓号则是靓号中的珍藏极品，尊贵之中的王者。
+
+								</p>
+
+								<p>
+
+									1、靓号购买方式：进入靓号选购页 → 点击“购买”即可 。
+
+								</p>
+
+								<p>
+
+									2、注意：靓号只能替换购买的账号的编号，不能赠送。
+
+								</p>
+
+							</dd>
+
+						</dl>
+
+						<dl class="no">
+
+							<dt>靓号有什么用？</dt>
+
+							<dd>
+
+								<p>靓号就是漂亮的号，有规律的号，吉祥的号，稀少的号，有深刻含义的号。如像520（我爱你）还有一些易记的连号即美观又能加强记忆，用靓号的显示效果好，具有一定震撼力。</p>
+
+							</dd>
+
+						</dl>
+
+					</div>
+
+				</div>
+
+				<div class="model-h mt10">
+
+					<h2 class="rtitle">用户声音 </h2>
+
+					<div class="help_des">
+
+						<dl>
+
+							<dd>
+
+								<p>
+
+									<strong>灿烂脱口秀（999999）：</strong>靓号之于主播和财主，犹如护照，除了彰显尊贵，更是鉴别身份真伪的重要标志。主播和财主一旦被众多粉丝追捧，立即会有若干相似马甲涌现，仿真程度一时间李逵李鬼难辨，这时候靓号的作用就彰显出来了，靓号犹如指纹一样，赫然唯一，无法拷贝。靓号升值空间无限，无论是传情达意，还是投资收藏，都是睿智玩家的首选。靓号，让您成为众人瞩目的焦点！
+
+								</p>
+
+							</dd>
+
+						</dl>
+
+						<dl class="no">
+
+							<dd>
+
+								<p>
+
+									<strong>♪゛杉宝贝（888028）：</strong>靓号是一种身份的象征，也是一种特殊靓点。每个靓号都有着各种来历，如我们的888***主播号，不仅是主播号，还能展示成长步伐。靓号是秀场房号中珍贵稀有的号码，尊贵之中的王者。
+
+								</p>
+
+							</dd>
+
+						</dl>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+
+		<!--靓号弹层 begin-->
+
+		<div id="giveBox" class="poptip" style="display:none;">
+
+			<div class="pop-t"><span class="close" onClick="Manage.closeBox();"></span>
+				<h3>提示</h3></div>
+
+			<div class="pop-v" id="goodnum-tip"></div>
+
+		</div>
+
+		<!--靓号弹层 end-->
+
+		<literal>
+			<script language="javascript">
+				$(function() {
+					$(".gn-text").ClearRoom();
+				})
+			</script>
+		</literal>
+		<!--底部导航-->
+		<div class="bottomnavi">
+			<div id="footer">
+				<div class="gw fixed" style="margin:0 auto;">
+					<ul id="doc">
+						<li>
+							<a title="首页" id="index.html" onclick="clicked(this.id);">
+								<dl id="sy">
+									<dt class="sy"> </dt>
+									<dd>首页</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+						   <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+								<dl id="ph">
+									<dt class="ph"></dt>
+									<dd>排行</dd>
+								</dl>
+							</a>
+						</li>
+						
+						<li>
+							<a title="我" id="userinfo.html" onclick="clicked(this.id);">
+								<dl id="w">
+									<dt class="w"></dt>
+									<dd>我</dd>
+								</dl>
+							</a>
+						</li>
+                        <li>
+							<a title="更多" id="find.html" onclick="clicked(this.id);">
+								<dl id="fx">
+									<dt class="fx">  </dt>
+									<dd>更多</dd>
+								</dl>
+							</a>
+						</li>
+					</ul>
+				</div>
+	</body>
+
+</html>
+<script>
+	$.getJSON(purl + '/index.php/Appapi/emceeno?ajax=emceeno4&callback=?', function(json) {
+		$("#Num_area4").html(json.aa);
+	});
+	$.getJSON(purl + '/index.php/Appapi/emceeno?ajax=emceeno5&callback=?', function(json) {
+		$("#Num_area5").html(json.length5);
+	});
+	$.getJSON(purl + '/index.php/Appapi/emceeno?ajax=emceeno6&callback=?', function(json) {
+		$("#Num_area6").html(json.length6);
+	});
+	$.getJSON(purl + '/index.php/Appapi/emceeno?ajax=emceeno7&callback=?', function(json) {
+		$("#Num_area7").html(json.length7);
+	});
+	$.getJSON(purl + '/index.php/Appapi/emceeno?ajax=emceeno8&callback=?', function(json) {
+		$("#Num_area8").html(json.length8);
+	});
+
+	function changeNums(type) {
+		var intTo = type;
+		count = 0;
+		if (type == 4) {
+			this.count4++;
+			count = this.count4;
+		}
+		if (type == 5) {
+			this.count5++;
+			count = this.count5;
+		}
+		if (type == 6) {
+			this.count6++;
+			count = this.count6;
+		}
+		if (type == 7) {
+			this.count7++;
+			count = this.count7;
+		}
+		if (type == 8) {
+			this.count8++;
+			count = this.count8;
+		}
+		$.ajax({
+			type: "post",
+			url: purl + "/index.php/emceenoapp/emceeno_refreshSaleNoList/length/" + type + "?callback=?",
+			dataType: 'jsonp',
+			data: "",
+			cache: false,
+			success: function(data) {
+				var dataArray = new Array();
+				$.each(data,
+					function(i, item) {
+						dataArray.push('<ul><li>');
+						dataArray.push('<p>靓号: <strong class="f-1">' + item["num"] + '</strong></p>');
+						dataArray.push('<p class="price">价值: <strong class="f-2">' + item["price"] + '</strong> 个秀币</p>');
+						dataArray.push('<span class="gn_btn mt5" onclick="Manage.Buynum(' + item["num"] + ',true)"><cite>购买</cite></span>');
+						dataArray.push('</li></ul>');
+					});
+				$("#Num_area" + intTo).html(dataArray.join(""));
+			}
+		});
+	}
+
+	function checknums() {
+		var n = $("#goognums").val();
+		if (!n) {
+			alert("请输入有效数字！");
+			$("#goognums").focus();
+			return;
+		} else if (n < 1000 || n > 99999999) {
+			alert("请输入4~8位号码");
+			$("#goognums").focus();
+			return;
+		} else if (n.substring(0, 1) == 0) {
+			alert("号码不能是0开头");
+			$("#goognums").focus();
+			return;
+		}
+		$("#giveBox").css({
+			"left": getMiddlePos('giveBox').pl + "px",
+			"top": getMiddlePos('giveBox').pt - 100 + "px"
+		}).show();
+		var str = '<p class="txt">查询中...</p>';
+		$("#goodnum-tip").html(str);
+		$.ajax({
+			type: "GET",
+			url: purl + "/index.php/emceenoapp/emceeno_search_emceeno/num/" + n + "/",
+			dataType: 'jsonp',
+			data: "",
+			success: function(data) {
+				if (data['state'] == 0) {
+					str = '<p class="txt">恭喜，此号码还未被抢占！</p>\
+					<p class="txt">靓号:' + n + '</p>\
+					<p class="txt">价值: ' + data["price"] + '个秀币</p>\
+					<p class="txt"><span class="sendBtn" onclick="Manage.Buynum(' + n + ',' + data["price"] + ')">购买</span><span  class="sendBtn ml10" onclick="Manage.closeBox();">取消</span></p>';
+				} else if (data['state'] == 1) {
+					str = '<p class="txt">该号码已被一位幸运用户捷足先登了！</p>\
+					<p class="luckyboy">' + data['nick'] + '</a></p>\
+					<p class="txt"><span class="sendBtn" onclick="Manage.closeBox();">重新查询</span></p>\
+					</div>';
+				} else if (data['state'] == 2) {
+					str = '<p class="txt">该号码不存在！</p>\
+					<p class="txt"><span class="sendBtn" onclick="Manage.closeBox();">重新查询</span></p>\
+					</div>';
+				} else {
+					Manage.resetsearch();
+					return;
+				}
+				$("#goodnum-tip").html(str);
+			}
+		});
+	}
+</script>
+

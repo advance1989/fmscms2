@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商城</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+		<script src="js/jquery.min.js"></script>
+		  	<script type="text/javascript">
+	    var  pagename='toolitem';
+ 
+	    </script>
+		
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--<script type="text/javascript" src="js/jquery1.42.min.js"></script>-->
+		<script type="text/javascript">
+				function getCookie(c_name)
+				{
+				if (document.cookie.length>0)
+				  {
+				  c_start=document.cookie.indexOf(c_name + "=")
+				  if (c_start!=-1)
+				    { 
+				    c_start=c_start + c_name.length+1 
+				    c_end=document.cookie.indexOf(";",c_start)
+				    if (c_end==-1) c_end=document.cookie.length
+				    return unescape(document.cookie.substring(c_start,c_end))
+				    } 
+				  }
+				return ""
+				}
+				
+				function setCookie(c_name,value,expiredays)
+				{
+				var exdate=new Date()
+				exdate.setDate(exdate.getDate()+expiredays)
+				document.cookie=c_name+ "=" +escape(value)+
+				((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+				}		
+			 //test
+			function buy(toolid, toolsubid) {
+				/*var purl='http://zhibo.1198.com/index.php/User';*/
+				var info = document.getElementById('info_' + toolsubid);
+				if (confirm("确认要购买此礼物吗?")) {
+					$.ajax({
+						type: "get",
+						dataType: "jsonp",
+						url: purl + "/index.php/Userapp/buyTool/toolid/" + toolid + "/toolsubid/" + toolsubid + "/v/" + Math.random(),
+						success: function(data, textStatus) {
+							alert(data.msg);
+							if(data.msg=="请重新登录")
+							{
+								 var reurl=window.location.href;								 
+								 setCookie('reurl',reurl);								
+								location.href="login.html";
+							}else if(data.msg=="您的余额不足")
+							{
+								 //var reurl=window.location.href;								 
+								// setCookie('reurl',reurl);								
+								location.href="recharge.html";
+							}
+							
+							info.innerHTML = "";
+						},
+						complete: function(XMLHttpRequest, textStatus) {
+							//alert('complete');											
+						},
+						error: function() {
+							//inner.innerHTML='<font color=green>出错啦 稍后再试</font>';	
+						}
+					});
+				}
+			}
+			
+			
+		</script>
+        <style>
+        
+	        body
+			{
+				width: 100%;
+				/*border: dotted #0062CC 1px; */
+				margin: 0;
+				min-width: 100%;
+			
+			}
+            
+              .car_02{font-size:13px;text-align: center; }
+        	 .car_05{font-size:13px;text-align: center; margin-bottom:10px;}   
+        	 .car_01{position:relative;}
+        	 .xian{position:absolute; left:0px; top:0px; }
+        	 .xin{position:absolute; left:0px; top:0px; }
+        	 .te{position:absolute; left:0px; top:0px; }
+        	 .car_04{position:absolute; left:0%; top:30%; }
+        </style>
+	</head>
+
+	<body >
+		<div class="ordertop" id="ordertop">
+			<div class="fanhui">
+				<a href="javascript:back();" ><img src="./images/back_default.png" width="25px" height="25px"></a>
+			</div>
+			<div id="ordertitle">
+				<p style="color:white;">商城</p>
+			</div>
+			<!--<div class="ordernavi"><a href="#"  onclick="ordernaviblock();"><img src="./images/mine_avatar_album_background.png" width="20px" height="20px"></div>-->
+		</div>
+		<div class="toollist">
+			<ul class="toollist_info">
+				<li id="zuojianavi" class="infoactive">
+					<a="#" onclick="gettoollist(1);">座驾</a>
+				</li>
+				<li id="huiyuannavi">
+					<a="#" onclick="gettoollist(2);">会员</a>
+				</li>
+				<li id="daojunavi">
+					<a="#" onclick="gettoollist(3);">道具</a>
+				</li>
+			</ul>
+
+		</div>
+		<div class="toolimg">
+			<img src="./images/toolimg.jpg" width="100%" height="70px;" />
+
+		</div>
+
+		<div class="daoju1f" id="daoju1f" style="display:none">
+			<!-- <em class="png24 shop-floor">1F</em>会员与特权-->
+			<ul class="daoju1f_lists" width="100%">
+
+				<li class="lists1" style=" width:100%;height:170px;  background: #64ddcd;">
+
+					<img src="./img/carpic/v.png" width="150" >
+					<div class="lists_content">
+						至尊VIP
+						<p class=''>限10富及以上等级玩家购买</p>
+						<p class=''>防止被踢</p>
+
+						<p>1个月:20000秀币
+							<a href="#" class="buybutton" onClick="buy('1','1')">购买</a>
+
+							<span id="info_1"></p>
+              <p style="margin-top: 15px;">12个月：120000秀币
+               <a href="#"  class="buybutton" onClick="buy('1','4')">购买</a>
+              
+                <span id="info_4"></p>
+			</div>
+
+	</li>
+	
+	<li class="lists1"  style="height:170px;  background: #aa9fff;"> 
+
+			<img  src="./img/carpic/basic-vip.png" width="150" > 
+			<div class="lists_content">  
+				黄金VIP
+				<p >限3富及以上等级玩家购买</p>
+				<p >房间排位直接升至10富上面</p>
+				  <p>1个月：15000秀币 
+				   <a href="#"  class="buybutton" onClick="buy('2','5')">购买</a>
+                
+                <span id="info_5"></p> 
+              <p style="margin-top: 15px;">12个月：100000秀币
+               <a href="#"  class="buybutton" onClick="buy('4','8')">购买</a>
+              
+                <span id="info_8"></p>			
+			</div>
+
+	</li>
+	
+	<li class="lists1"  style=" width:100%;height:170px;  background: #9fbcff"> 
+
+			<img  src="./img/carpic/jin.png" width="150" > 
+			<div class="lists_content">  
+				随意说
+				<p >不限条件</p>
+				<p >每日免费发布100条广播</p>
+				 <p>1个月：50000秀币
+				 	 <a href="#"  class="buybutton" onClick="buy('4','10')">购买</a>
+              
+                <span id="info_10"></p>
+			</div>
+
+	</li>
+	
+	<li class="lists1"  style=" width:100%;height:170px;  background: #d099ff;"> 
+
+			<img  src="./img/carpic/man.png" width="150" > 
+			<div class="lists_content">  
+				金钥匙
+				<p class='mui-ellipsis'>不限条件</p>
+				<p class='mui-ellipsis'>可进入满房房间</p>
+				 <p>1个月：15000秀币
+				 <a href="#"  class="buybutton" onClick="buy('3','9')">购买</a> 
+       
+                <span id="info_9"></p>
+			</div>
+
+	</li>
+</ul> 
+      </div>
+      
+<!-- <em class="png24 shop-floor">2F</em>秀场座驾 	-->
+<div  class="daoju2f" id="daoju2f" width="100%" style="display:block;"> 
+
+   <div class="car_07" >
+              <div class="car_01">
+                <div class="car_02">布加迪威航</div>
+                <div class="car_04" ><img src="./img/carpic/gift_9172.png" width="70%" ></div>
+                
+              </div> 
+              <div class="car_05">售价：35000秀币/月</div>
+              
+              
+              <div class="car_06"><a href="#" onClick="buy('5','11')">购买</a></div>
+            </div>
+            <div class="car_07">
+              <div class="car_01">
+                <div class="car_02"><img src="images/xian.png" width="18%" height="33%" class="xian"/>法拉利</div>
+                <div class="car_04"><img src="./img/carpic/gift_9177.png" width="70%"></div>
+              </div>
+              <div class="car_05">售价：25000秀币/月</div>
+              <div class="car_06"><a href="#" onClick="buy('6','12')">购买</a></div> 
+            </div>
+            <div class="car_07">
+              <div class="car_01">
+                <div class="car_02">考维特</div>
+                <div class="car_04"><img src="./img/carpic/gift_9178.png" width="70%"></div>
+              </div>
+              <div class="car_05">售价：15000秀币/月</div>
+              <div class="car_06"><a href="#" onClick="buy('7','13')">购买</a></div>
+              <div class="car_08"><span id="info_13"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">悍马</div>
+				<div class="car_04"><img src="./img/carpic/gift_9176.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：15000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('8','14')">购买</a></div>
+			<div class="car_08"><span id="info_14"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02"><img src="images/xin.png" width="18%" height="33%" class="xin"/>UFO</div>
+				<div class="car_04"><img src="./img/carpic/gift_9174.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('9','15')">购买</a></div>
+			<div class="car_08"><span id="info_15"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">自行车</div>
+				<div class="car_04"><img src="./img/carpic/gift_9165.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：3000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('10','16')">购买</a></div>
+			<div class="car_08"><span id="info_16"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">Nissan GTR</div>
+				<div class="car_04"><img src="./img/carpic/gift_9170.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：25000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('11','17')">购买</a></div>
+			<div class="car_08"><span id="info_17"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">GMC</div>
+				<div class="car_04"><img src="./img/carpic/gift_9169.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：15000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('12','18')">购买</a></div>
+			<div class="car_08"><span id="info_18"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">福特</div>
+				<div class="car_04"><img src="./img/carpic/gift_9175.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('13','19')">购买</a></div>
+			<div class="car_08"><span id="info_19"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02"><img src="images/te.png" width="18%" height="33%" class="te"/>宇宙战舰</div>
+				<div class="car_04"><img src="./img/carpic/gift_9182.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('14','20')">购买</a></div>
+			<div class="car_08"><span id="info_20"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">小乌龟</div>
+				<div class="car_04"><img src="./img/carpic/gift_9166.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：3000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('15','21')">购买</a></div>
+			<div class="car_08"><span id="info_21"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">小毛驴</div>
+				<div class="car_04"><img src="./img/carpic/gift_9167.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('16','22')">购买</a></div>
+			<div class="car_08"><span id="info_22"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">赤兔马</div>
+				<div class="car_04"><img src="./img/carpic/gift_9168.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('17','23')">购买</a></div>
+			<div class="car_08"><span id="info_23"></span></div>
+		</div>
+		<div class="car_07">
+			<div class="car_01">
+				<div class="car_02">科幻超级摩托</div>
+				<div class="car_04"><img src="./img/carpic/gift_9164.png" width="70%"></div>
+			</div>
+			<div class="car_05">售价：6000秀币/月</div>
+			<div class="car_06"><a href="#" onClick="buy('18','24')">购买</a></div>
+			<div class="car_08"><span id="info_24"></span></div>
+		</div>
+
+		</div>
+		<div class="daoju3f" id="daoju3f" style="display:none;">
+			该功能尚未开放，敬请期待...
+
+		</div>
+
+		<div style="width:100%; height:100px; clear:both;">
+
+		</div>
+		<!--底部导航-->
+		<div class="bottomnavi">
+			<div id="footer">
+				<div class="gw fixed" style="margin:0 auto;">
+					<ul id="doc">
+						<li>
+							<a title="首页" id="index.html" onclick="clicked(this.id);">
+								<dl id="sy">
+									<dt class="sy"> </dt>
+									<dd>首页</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+					   <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+								<dl id="ph">
+									<dt class="ph"></dt>
+									<dd>排行</dd>
+								</dl>
+							</a>
+						</li>
+						
+						<li>
+							<a title="我" id="userinfo.html" onclick="clicked(this.id);">
+										<dl id="w">
+											<dt class="w"></dt>
+											<dd>我</dd>
+										</dl>
+									</a>
+						</li>
+                        <li>
+							<a title="更多" id="find.html" onclick="clicked(this.id);">
+								<dl id="fx">
+									<dt class="fx">  </dt>
+									<dd>更多</dd>
+								</dl>
+							</a>
+						</li>
+					</ul> 
+				</div>
+	</body>
+
+</html>
+<script> 
+	function back(){
+		
+    	if(sessionStorage.tabsid!=undefined){
+    		
+    		window.location.href="show.html";
+    	}else{
+    		window.location.href="find.html";
+    	}
+    }
+		
+
+	function gettoollist(num) {
+		//1.座驾 2.会员 3.道具
+		if (num == '1') {
+			$("#zuojianavi").addClass("infoactive");
+			$("#huiyuannavi").removeClass("infoactive");
+			$("#daojunavi").removeClass("infoactive");
+			$("#daoju1f").css("display", "none");
+			$("#daoju2f").css("display", "block");
+			$("#daoju3f").css("display", "none");
+		} else if (num == '2') {
+			$("#zuojianavi").removeClass("infoactive");
+			$("#huiyuannavi").addClass("infoactive");
+			$("#daojunavi").removeClass("infoactive");
+			$("#daoju1f").css("display", "block");
+			$("#daoju2f").css("display", "none");
+			$("#daoju3f").css("display", "none");
+		} else if (num == '3') {
+			$("#zuojianavi").removeClass("infoactive");
+			$("#huiyuannavi").removeClass("infoactive");
+			$("#daojunavi").addClass("infoactive");
+			$("#daoju1f").css("display", "none");
+			$("#daoju2f").css("display", "none");
+			$("#daoju3f").css("display", "block");
+		}
+	}
+</script>

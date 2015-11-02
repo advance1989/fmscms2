@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>活动详情</title>
+			<script type="text/javascript" src="js/jquery.min.js"></script> 
+		 <script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		 	<script type="text/javascript">
+	    var  pagename='activityinfo';
+ 
+	    </script>
+	</head>
+	<body>
+			<div class="activitytop"> 
+			<div class="fanhui"><a id="activity.html" onclick="clicked(this.id);"><img src="./images/back_default.png" width="25px" height="25px"></a></div> 
+		<div id="activitytitle"><p id="centertitle">活动详情</p></div>
+		<!--<div class="activitymore"><a href="#" onclick="getnavilist();"><img src="./images/more.png" width="25px" height="25px"></div></a>-->
+		</div>
+		
+		<div class="wenzhanginfo" id="wenzhanginfo">
+			<div class="wenzhangimg">
+			<img src="">
+			</div>
+			<div class="content">  
+			  　　<h2>文章标题</h2>
+			   <div class="wenzhangcontent">
+			   文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+			   </div>
+			</div>
+		</div>
+		
+	
+	</body>
+</html>
+<script>
+	function GetQueryString(name) {  
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+    var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
+    var context = "";  
+    if (r != null)  
+         context = r[2];   
+    reg = null;   
+    r = null;   
+    return context == null || context == "" || context == "undefined" ? "" : context;  
+} 
+
+var wenzhangid=GetQueryString("wenzhangid"); 
+$.getJSON(purl+'/index.php/Appapi/wenzhanginfo?wenzhangid='+wenzhangid+'&ajax=wenzhanginfo&callback=?',function(json){
+    
+		$("#wenzhanginfo").html(json);
+		
+	});
+	 
+	
+	
+</script>

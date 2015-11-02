@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登陆</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery1.42.min.js"></script>
+		<link href="css/common.css" rel="stylesheet" />
+		<script type="text/javascript">
+	    var  pagename='login'; 
+	    </script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script language="JavaScript">
+			 //登陆验证
+			function login() {
+				var user = $('#userName').val();
+				var pass = $('#password').val();
+				var code = $('#code_i').val();
+				if (user == '' || pass == '' || code == '') {} else {
+					
+					var url = purl + "/index.php/Api/dologin?tef=" + user + "&jskda=" + pass;
+					$.ajax({
+						url: url,
+						type: "get",
+						dataType: "jsonp",
+						success: function(data, textStatus) {
+							if(data['data']!='登陆成功'){
+								alert(data['data']);
+							}else{
+							
+							window.location.href = 'userinfo.html';
+							} 
+						}
+					});
+				}
+			}
+		</script>
+				  
+		<style type="text/css">
+		
+			#userName {
+				width: 230px;
+				height: 41px;
+				border-top-style: none;
+				border-right-style: none;
+				border-left-style: none;
+				border-bottom-style: none;
+				background-color: transparent;
+				color:#fff;
+			}
+			#password {
+				width: 230px;
+				height: 41px;
+				border-top-style: none;
+				border-right-style: none;
+				border-left-style: none;
+				border-bottom-style: none;
+				background-color: transparent;
+				color:#fff;
+			}
+			#login {
+				margin-top: 43px;
+				background-color: #6f4411;
+				border: 0;
+				width: 100%;
+				height: 45px;
+				margin-bottom: 20px;
+			}
+			#wenzi {
+				width: 190px;
+				margin: auto;
+				color:#604628;
+			}
+			#wenzi a{color:#604628;}
+			hr {
+				margin-top: 0px;
+			}
+			.denglu{margin:10px 0px; border-radius:10px; border:1px solid #e8dfd5; color:#fff;}
+			
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #fff;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #fff;
+}
+		</style>
+	</head>
+
+	<body style="width: 100%;" background="img/carpic/chat_group_background.png">
+
+<div class="ordertop" style="height:50px" id="ordertop">
+
+	
+
+		<div id="ordertitle" style="float:none;"><img src="./images/logoimg.png" style="float:left" widht="30px" height="30px"><p style="color:white; float:left; margin-top:5px;"></p><img id="recharge_img" style="float: right; width: 50px; margin-right: 10px;" src="img/carpic/recharge_entrance_default.png"></div>
+
+	 
+
+	</div>
+		<div id="from" style="margin: auto; margin-top: 160px; width: 80%;">
+			<div class="denglu"><img src="img/carpic/live_video_left_top_audience_image.png" style="float: left;">
+			<input type="text" id="userName" placeholder="用户名">
+			<br>
+            </div>
+            <div class="denglu">
+			<img style="width: 23px; margin-left: 4px; margin-right: 7px;" src="img/carpic/pwd_icon.png" style="float: left;">
+			<input type="password" id="password" placeholder="密码">
+			</div>
+			<button id="login" class="btn btn-default" type="button" onclick="login()"><font color="#FFFFFF" size="5">登陆</font></button>
+			<div id="wenzi"><a href="register.html">新用户注册</a> &nbsp; &nbsp; &nbsp;<font color="#FFFFFF">| </font>&nbsp; &nbsp; &nbsp; <a >忘记密码</a></div>
+		</div>
+<div class="bottomnavi">
+	<div id="footer" >
+	<div class="gw fixed" style="margin:0 auto;">
+    <ul id="doc">
+        <li>
+		    <a title="首页" id="index.html" onclick="clicked(this.id);">
+                <dl id="sy">
+                     <dt class="sy"> </dt>
+                    <dd>首页</dd>
+                </dl>
+            </a>
+	    </li>    
+	    <li>
+		      <a title="排行"  id="order.html" onclick="clicked(this.id);" >
+                <dl id="ph">
+                   <dt class="ph"></dt>
+                    <dd>排行</dd>
+                </dl>
+            </a>
+	    </li>     
+		   
+	    <li>
+		    <a title="我" href="#" class="">
+                <dl id="w">
+                    <dt class="w" style="
+ background:url(./images/main_tab4_pressed.png) no-repeat top center;"></dt>
+                    <dd style="color:#FF8900;">我</dd>
+                </dl>
+            </a>
+	    </li>  
+        
+	    <li>
+		    <a title="更多" id="find.html" onclick="clicked(this.id);">
+                <dl id="fx">
+                    <dt class="fx">  </dt>
+                    <dd>更多</dd></a>
+                </dl>
+            </a>
+	    </li>    
+    </ul>
+  </div>
+   
+	</body>
+
+</html>
+
+<script language="JavaScript">
+	//$("#from").attr('width',width+"px");
+	//切换验证码
+	$('#code').click(function() {
+		var sjs = Math.random()
+		$('#code').attr('src', 'http://zhibo.1198.com/index.php/Base/verify/v/' + sjs);
+	});
+	//获取验证码 
+	$('#code').attr('src', 'http://zhibo.1198.com/index.php/Base/verify/v/0.11335167987272143');
+</script>

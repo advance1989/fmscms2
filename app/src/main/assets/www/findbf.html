@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>发现</title>
+		<link rel="stylesheet" type="text/css" href=".css/css.css">
+		<link href="css/common.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+<!--<script type="text/javascript" src="js/jquery.min.js"></script> -->
+    
+      	<script type="text/javascript">
+	    var  pagename='findbf';
+ 
+	    </script>
+
+		  <script src="js/common.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script language="JavaScript">
+		function plusReady() {
+				// Android处理返回键
+				plus.key.addEventListener('backbutton', function() {
+					mui.back();
+				}, false);
+				
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		
+		
+		</script>
+	</head>
+	<body background="img/carpic/chat_group_background2.png" style="background-size:cover;">
+		<div class="searchformzone">
+<!--<form id="globalsearchform" method="get" action="search/index.php">
+   	<div class="globalsearchform">
+    	<input name="key" type="text" id="shopkeyword" value="" size="20" class="input" />
+  	</div>
+	<div class="globalsearchform1">
+  		<input name="imageField" id="button" type="image" src="./images/searchr.png" class="imgbutton" style="height:30px;"/>
+  	</div>
+</form>-->
+          <div class="findsearchbox">
+            <input type="text" class="findinput" placeholder="请输入房间号，直达..." id="inputbox"/>
+            <div class="searchimg">
+			<a href="#" onclick="searchroom1();"><img src="./images/search.png" alt="搜索" width="25px" height="25px;"/></a>
+		</div>
+          </div> 
+          
+</div>
+  
+
+<div class="mg">
+
+        <div class="item">
+            <a class="modlink" style="background-color:#c3c7c8;" id="toolItem.html "onclick="clicked(this.id);">
+                <i class="font" style="color: rgb(254, 130, 76);"><img src="./images/tab_find_market_default.png" style="width:80px;height:80px;"  onmousemove="this.src='./images/tab_find_market_pressed.png'"  onmouseout="this.src='./images/tab_find_market_default.png'" /> </i>
+            </a>
+            <p class="attr" style="width: 100%;">商城</p>
+        </div>
+   
+        <div class="item">
+            <a class="modlink" style="background-color:#c3c7c8;" href="jiazu.html" target="frame1">
+                <i class="font" style="color: rgb(254, 130, 76);"><img src="./images/tab_find_familyroom_default.png" style="width:80px;height:80px;" onmousemove="this.src='./images/tab_find_familyroom_pressed.png'"  onmouseout="this.src='./images/tab_find_familyroom_default.png'" /> </i>
+            </a>
+            <p class="attr" style="width: 100%;">家族</p>
+        </div>
+
+        <div class="item">
+            <a class="modlink" style="background-color:#c3c7c8;" href="activity.html" target="frame1" >
+                <i class="font" style="color: rgb(254, 130, 76);"><img src="./images/tab_find_activities_default.png" style="width:80px;height:80px;" onmousemove="this.src='./images/tab_find_activities_pressed.png'"  onmouseout="this.src='./images/tab_find_activities_default.png'" /> </i>
+            </a>
+            <p class="attr" style="width: 100%;">活动</p>  
+        </div>
+   
+        <div class="item">
+            <a class="modlink" style="background-color:#c3c7c8;" href="emceeno.html"  target="frame1">
+                <i class="font" style="color: rgb(254, 130, 76);"><img src="./images/tab_find_like_default.png" style="width:80px;height:80px;" onmousemove="this.src='./images/tab_find_like_pressed.png'"  onmouseout="this.src='./images/tab_find_like_default.png'" /> </i>
+            </a>
+            <p class="attr" style="width: 100%;">靓号</p>
+        </div>
+		 
+        <div class="item">
+            <a class="modlink" style="background-color:#c3c7c8;" href="findemcees.html" target="frame1">
+                <i class="font" style="color: rgb(254, 130, 76);"><img src="./images/tab_find_taiwan_default.png" style="width:80px;height:80px;"  onmousemove="this.src='./images/tab_find_taiwan_pressed.png'"  onmouseout="this.src='./images/tab_find_taiwan_default.png'" /> </i>
+            </a>
+            <p class="attr" style="width: 100%;">更多主播</p>
+        </div>
+ 
+   </div> 
+
+	</body>
+</html>
+<script>
+function  searchroom1(){
+	
+  	var roomnum=$("#inputbox").val();
+
+  	$.ajax({
+
+				type: "post",
+				dataType: "jsonp",
+				url: purl+"/index.php/Appapi/searchroom/roomnum/"+roomnum,
+				
+				success: function(data){
+					  	 
+				 if(data=='0'){
+				 	alert("您输入的房间号不存在，请重新输入")
+				 }else{
+				 	window.location.href="show.html?roomid="+roomnum;
+				 }
+				
+					   
+				},
+				complete: function(XMLHttpRequest, textStatus){
+					//alert('complete');											
+				},
+				error: function(){					
+					//inner.innerHTML='<font color=green>出错啦 稍后再试</font>';	
+				}
+			});	
+  }
+</script>
